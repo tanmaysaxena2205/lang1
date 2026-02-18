@@ -1,33 +1,34 @@
 import { clerkMiddleware, createRouteMatcher } from "@clerk/nextjs/server";
+import { NextResponse } from "next/server";
 
-// 1. Define strictly PRIVATE routes that need the Middleware to run
-// We ONLY want the middleware to run for the dashboard and units.
-const isPrivateRoute = createRouteMatcher([
-  '/dashboard(.*)',
-  '/unit/(.*)',
-  '/api/user/(.*)' // Protect your internal data APIs
+// 1. Define which routes are public
+const isPublicRoute = createRouteMatcher([
+  '/sign-in(.*)', 
+  '/sign-up(.*)', 
+  '/api/webhooks/clerk(.*)',
+  '/', // Homepage is public
+  '/pricing',
+  '/my-words'
 ]);
 
 export default clerkMiddleware(async (auth, req) => {
-  // If the route is private, enforce authentication
-  if (isPrivateRoute(req)) {
-    await auth.protect();
+  const { userId } = await auth();
+
+  // OPTIMIZATION: If user is logged in and hits the landing page, 
+  // send them straight to the dashboard so they don't see the "Sign Up" pitch.
+  if (userId && req.nextUrl.pathname === '/') {
+    return NextResponse.redirect(new URL('/dashboard', req.url));
   }
-  // For all other routes (Home, Pricing, My Words), 
-  // the middleware does NOTHING and exits immediately.
+
+  // 2. If the user is NOT logged in and trying to access a PRIVATE route
+  if (!userId && !isPublicRoute(req)) {
+    return NextResponse.redirect(new URL('/sign-up', req.url));
+  }
 });
 
 export const config = {
   matcher: [
-    /*
-     * This matcher is much more specific. 
-     * It ONLY triggers the middleware for your protected app areas.
-     * This prevents any 'hover' on the homepage from hitting the Edge function.
-     */
-    '/dashboard/:path*',
-    '/unit/:path*',
-    '/api/:path*',
-    // We explicitly EXCLUDE static files and public pages like pricing/my-words
-    '/((?!_next/static|_next/image|favicon.ico|pricing|my-words|$).*)',
+    '/((?!_next|[^?]*\\.(?:html?|css|js(?!on)|jpe?g|webp|png|gif|svg|ttf|woff2?|ico|csv|docx?|xlsx?|zip|webmanifest)).*)',
+    '/(api|trpc)(.*)',
   ],
 };
