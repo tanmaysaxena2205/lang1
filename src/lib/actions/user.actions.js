@@ -6,22 +6,7 @@ import { revalidatePath } from "next/cache";
 
 /**
  * Fetches user from DB by Clerk ID
- */
-export async function setUserLanguage(userId, locale) {
-  try {
-    const client = await clerkClient();
-    await client.users.updateUserMetadata(userId, {
-      publicMetadata: {
-        language: locale,
-      },
-    });
-    revalidatePath("/"); 
-    return { success: true };
-  } catch (error) {
-    console.error("Clerk Metadata Error:", error);
-    return { success: false };
-  }
-}
+
 export async function getUserById(userId) {
   try {
     if (!userId) return null;
