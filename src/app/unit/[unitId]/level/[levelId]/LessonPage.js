@@ -125,8 +125,8 @@ export default function LessonPage({ user }) {
   return (
     <div className="fixed inset-0 flex flex-col bg-[#0a0a0a] text-white overflow-hidden touch-none">
 
-      {/* HEADER - Smaller padding on mobile */}
-      <div className="shrink-0 flex items-center gap-4 md:gap-6 px-4 md:px-6 h-16 md:h-20 w-full max-w-5xl mx-auto z-10">
+      {/* HEADER - Static Height */}
+      <div className="shrink-0 flex items-center gap-4 md:gap-6 px-4 md:px-6 h-16 md:h-20 w-full max-w-5xl mx-auto z-10 bg-[#0a0a0a]">
         <button onClick={() => router.push("/dashboard")} className="hover:opacity-70 transition-opacity">
           <X className="w-6 h-6 md:w-7 md:h-7" />
         </button>
@@ -141,26 +141,26 @@ export default function LessonPage({ user }) {
         </span>
       </div>
 
-      {/* MAIN CONTENT AREA - Scrolled up slightly for mobile keyboards/footers */}
-      <div className="flex-1 w-full max-w-3xl mx-auto flex flex-col items-center justify-start md:justify-center px-6 pt-4 md:pt-0 overflow-y-auto pb-32 md:pb-0">
+      {/* MAIN CONTENT AREA - SIGNIFICANT TOP SPACE ON MOBILE (pt-20) */}
+      <div className="flex-1 w-full max-w-3xl mx-auto flex flex-col items-center justify-start md:justify-center px-4 md:px-6 pt-20 md:pt-0 overflow-y-auto pb-40 md:pb-0">
 
         {current.type === "boss" && (
-          <div className="w-full flex flex-col">
+          <div className="w-full max-w-[92%] md:max-w-full flex flex-col">
             <div className="flex justify-center mb-4">
               <span className="bg-red-600/20 text-red-500 border border-red-500/50 px-3 py-1 rounded-full font-black uppercase italic tracking-tighter text-[10px] animate-pulse">
                 Final Challenge
               </span>
             </div>
-            <h1 className="text-2xl md:text-4xl font-black italic text-center mb-6 md:mb-10 uppercase tracking-tighter leading-tight">
+            <h1 className="text-2xl md:text-4xl font-black italic text-center mb-8 md:mb-10 uppercase tracking-tighter leading-tight">
               {current.q}
             </h1>
-            <div className="grid grid-cols-1 gap-2 md:gap-3 w-full">
+            <div className="grid grid-cols-1 gap-3 w-full">
               {current.options.map((opt) => (
                 <button
                   key={opt}
                   disabled={status !== "idle"}
                   onClick={() => { setSelected(opt); speakGerman(opt); }}
-                  className={`p-4 md:p-6 text-xl md:text-2xl font-black uppercase border-2 rounded-xl md:rounded-2xl transition-all active:scale-[0.98] ${selected === opt
+                  className={`p-4 md:p-6 text-lg md:text-2xl font-black uppercase border-2 rounded-xl md:rounded-2xl transition-all active:scale-[0.98] ${selected === opt
                       ? "border-[#ff6600] bg-[#ff6600] text-black shadow-[0_0_20px_rgba(255,102,0,0.3)]"
                       : "border-white/5 bg-white/5 hover:bg-white/10"
                     }`}
@@ -173,7 +173,7 @@ export default function LessonPage({ user }) {
         )}
 
         {current.type === "intro" && (
-          <div className="w-full flex flex-col items-center">
+          <div className="w-full max-w-[92%] md:max-w-full flex flex-col items-center">
             <div className="bg-white/5 p-8 md:p-12 rounded-[2.5rem] md:rounded-[3.5rem] border-2 border-white/10 w-full text-center shadow-2xl">
               <Volume2
                 className="text-[#ff6600] mb-6 md:mb-8 cursor-pointer mx-auto hover:scale-110 transition-transform w-12 h-12 md:w-[72px] md:h-[72px]"
@@ -182,10 +182,10 @@ export default function LessonPage({ user }) {
               <h1 className="text-4xl md:text-7xl font-black italic uppercase mb-1 md:mb-2 tracking-tighter">
                 {current.word}
               </h1>
-              <p className="text-xl md:text-3xl text-white/30 font-bold uppercase tracking-[0.1em] md:tracking-[0.2em] mb-6 md:mb-10">
+              <p className="text-xl md:text-3xl text-white/30 font-bold uppercase tracking-[0.1em] md:tracking-[0.2em] mb-8 md:mb-10">
                 {current.translation}
               </p>
-              <div className="bg-[#ff6600]/10 p-4 md:p-6 rounded-2xl border border-[#ff6600]/20 max-w-md mx-auto">
+              <div className="bg-[#ff6600]/10 p-5 md:p-6 rounded-2xl border border-[#ff6600]/20 max-w-md mx-auto">
                 <p className="text-lg md:text-2xl text-[#ff6600] font-black italic leading-tight">
                   {current.content}
                 </p>
@@ -195,17 +195,17 @@ export default function LessonPage({ user }) {
         )}
 
         {current.type === "choice" && (
-          <div className="w-full flex flex-col">
-            <h1 className="text-2xl md:text-4xl font-black italic text-center mb-6 md:mb-10 uppercase tracking-tighter leading-tight">
+          <div className="w-full max-w-[92%] md:max-w-full flex flex-col">
+            <h1 className="text-2xl md:text-4xl font-black italic text-center mb-8 md:mb-10 uppercase tracking-tighter leading-tight">
               {current.q}
             </h1>
-            <div className="grid gap-3 md:gap-4 w-full max-w-xl mx-auto">
+            <div className="grid gap-3 md:gap-4 w-full mx-auto">
               {current.options.map((opt) => (
                 <button
                   key={opt}
                   disabled={status !== "idle"}
                   onClick={() => { setSelected(opt); speakGerman(opt); }}
-                  className={`flex items-center justify-between p-4 md:p-6 text-xl md:text-2xl font-black uppercase border-2 rounded-xl md:rounded-2xl transition-all active:scale-[0.98] ${selected === opt
+                  className={`flex items-center justify-between p-4 md:p-6 text-lg md:text-2xl font-black uppercase border-2 rounded-xl md:rounded-2xl transition-all active:scale-[0.98] ${selected === opt
                       ? "border-[#ff6600] bg-[#ff6600] text-black shadow-[0_0_20px_rgba(255,102,0,0.3)]"
                       : "border-white/5 bg-white/5 hover:bg-white/10"
                     }`}
@@ -219,7 +219,7 @@ export default function LessonPage({ user }) {
         )}
 
         {current.type === "jumble" && (
-          <div className="w-full flex flex-col items-center gap-6 md:gap-8">
+          <div className="w-full max-w-[92%] md:max-w-full flex flex-col items-center gap-6 md:gap-8">
             <h1 className="text-2xl md:text-4xl font-black italic text-center uppercase tracking-tighter leading-tight">
               {current.q}
             </h1>
@@ -261,7 +261,7 @@ export default function LessonPage({ user }) {
         )}
       </div>
 
-      {/* FOOTER - Scaled down for mobile */}
+      {/* FOOTER */}
       <div className={`shrink-0 h-24 md:h-28 flex items-center px-4 md:px-6 transition-all duration-300 border-t-2 ${status === 'correct' ? 'bg-green-600 border-green-400' :
           status === 'wrong' ? 'bg-red-600 border-red-400' : 'bg-[#0f0f0f] border-white/5'
         }`}>
