@@ -31,50 +31,84 @@ export async function getUserById(userId) {
 /**
  * Updates progress and XP when a level is completed
  */
+
+
+// Replace this with your actual data
+
+// Ensure this matches your actual project structure
+
+// Update this to match your actual course map
+const COURSE_STRUCTURE = {
+  1: { totalUnits: 3 }, 
+  2: { totalUnits: 5 }, 
+  3: { totalUnits: 2 }, 
+};
+
 export async function completeSublevel(clerkId, finishedId) {
   try {
     if (!clerkId) throw new Error("clerkId is required");
     
     await connectToDatabase();
     
-    const [unit, level] = finishedId.split("-").map(Number);
+    // 1. Parse the ID of the level the user JUST completed
+    // If user completes Level 3 of Unit 1, finishedId should be "1-1-3"
+    const parts = finishedId.split("-").map(part => parseInt(part, 10));
+    
+    // Safety fallback to Section 1, Unit 1, Level 1 if parsing fails
+    const section = !isNaN(parts[0]) ? parts[0] : 1;
+    const unit    = !isNaN(parts[1]) ? parts[1] : 1;
+    const level   = !isNaN(parts[2]) ? parts[2] : 1;
+    
+    let nextSection = section;
     let nextUnit = unit;
     let nextLevel = level + 1;
 
-    // Logic: If they finish level 5, go to next unit level 1
+    // 2. THE PROGRESSION GATE
+    // Only increment Unit if the level just finished was 5
     if (level >= 5) {
-      nextUnit = unit + 1;
-      nextLevel = 1;
+      nextLevel = 1; // Reset level to 1
+      nextUnit = unit + 1; // Move to next unit
+      
+      // Check if we also need to move to the next section
+      const currentSectionData = COURSE_STRUCTURE[section];
+      if (currentSectionData && nextUnit > currentSectionData.totalUnits) {
+        nextUnit = 1;
+        nextSection = section + 1;
+      }
+    } else {
+      // IMPORTANT: If level was 1, 2, 3, or 4...
+      // nextUnit and nextSection MUST remain unchanged from the current ones
+      nextUnit = unit;
+      nextSection = section;
     }
 
-    const nextProgressId = `${nextUnit}-${nextLevel}`;
+    // 3. Construct the 3-part ID for the database
+    const nextProgressId = `${nextSection}-${nextUnit}-${nextLevel}`;
 
-    console.log(`Attempting to update progress for ${clerkId} to ${nextProgressId}`);
+    console.log(`User ${clerkId} finished ${finishedId}. Moving to ${nextProgressId}`);
 
     const updatedUser = await User.findOneAndUpdate(
-      { clerkId: String(clerkId) }, // Force string
+      { clerkId: String(clerkId) }, 
       { 
         $set: { 
           currentProgress: nextProgressId,
           lastLevelCompletedAt: new Date() 
         }, 
+        // Awarding 20 XP for level completion
         $inc: { xp: 20 } 
       },
-      { new: true, runValidators: false } 
+      { new: true } 
     );
 
     if (!updatedUser) {
-      console.error("❌ DB ERROR: User not found in database for ID:", clerkId);
-      throw new Error(`User with clerkId ${clerkId} does not exist in MongoDB.`);
+      throw new Error(`User with clerkId ${clerkId} not found in DB.`);
     }
-
-    console.log("✅ DB SUCCESS: Progress updated to", nextProgressId);
 
     revalidatePath("/dashboard");
     return JSON.parse(JSON.stringify(updatedUser));
   } catch (error) {
-    console.error("❌ CRITICAL ERROR in completeSublevel:", error.message);
-    throw error; // Throwing so the UI can catch it in the try/catch block
+    console.error("❌ DB Update Failed:", error.message);
+    throw error;
   }
 }
 
