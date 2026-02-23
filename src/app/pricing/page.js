@@ -108,7 +108,7 @@ export default function PricingPage() {
             {/* PAYMENT GATEWAYS */}
             <div className="flex flex-col gap-4">
               
-              {/* 1. PAYPAL (NOW FIRST) */}
+              {/* 1. PAYPAL (FIRST) */}
               <div className="w-full min-h-[150px]">
                 <PayPalScriptProvider options={{ "client-id": process.env.NEXT_PUBLIC_PAYPAL_CLIENT_ID }}>
                   <PayPalButtons
@@ -140,23 +140,19 @@ export default function PricingPage() {
                 <div className="relative flex justify-center text-[10px] uppercase font-black italic"><span className="bg-[#0a0a0a] px-2 text-gray-500 tracking-widest">Secure Checkout</span></div>
               </div>
 
-              {/* 2. RAZORPAY (NOW SECOND) */}
+              {/* 2. RAZORPAY (SECOND) */}
               <button 
                 onClick={handleRazorpay}
-                className="w-full bg-[#3395FF] hover:bg-[#2a7ed9] h-[50px] rounded-sm flex items-center justify-center transition-all shadow-md active:scale-[0.98]"
+                className="w-full bg-[#3395FF] hover:bg-[#2a7ed9] h-[50px] rounded-sm flex items-center justify-center transition-all shadow-md active:scale-[0.98] px-4"
               >
                 <div className="flex items-center gap-2 font-bold italic text-white">
                   <span className="text-lg not-italic font-bold tracking-tight">Pay with</span>
-                  <svg width="100" height="25" viewBox="0 0 234 38" fill="none" xmlns="http://www.w3.org/2000/svg" className="mt-1">
-                    <path d="M25.7 37.3L15.9 19.3L1.5 37.3H0L13.8 19.3L0.2 0H1.7L15.1 19.3L28.5 0H30L16.4 19.3L30.2 37.3H25.7Z" fill="white"/>
-                    <path d="M44.5 37.3H40.2V0H44.5V37.3Z" fill="white"/>
-                    <path d="M68.8 30.6L67.7 37.3H63.1L69.6 0H74.8L81.3 37.3H76.7L75.6 30.6H68.8ZM70 26.6H74.4L72.2 13L70 26.6Z" fill="white"/>
-                    <path d="M96.3 37.3H92V0H96.3V37.3Z" fill="white"/>
-                    <path d="M120.6 30.6L119.5 37.3H114.9L121.4 0H126.6L133.1 37.3H128.5L127.4 30.6H120.6ZM121.8 26.6H126.2L124 13L121.8 26.6Z" fill="white"/>
-                    <path d="M153.3 19.3C153.3 29.3 147.2 37.3 138.8 37.3H133.6V0H138.8C147.2 0 153.3 8 153.3 18V19.3ZM149 19.3V18C149 10.3 144.7 4.1 137.9 4.1H137.9V33.2H137.9C144.7 33.2 149 27 149 19.3Z" fill="white"/>
-                    <path d="M176.6 30.6L175.5 37.3H170.9L177.4 0H182.6L189.1 37.3H184.5L183.4 30.6H176.6ZM177.8 26.6H182.2L180 13L177.8 26.6Z" fill="white"/>
-                    <path d="M201.2 37.3H196.9V0H201.2V37.3Z" fill="white"/>
-                  </svg>
+                  <img 
+                    src="https://upload.wikimedia.org/wikipedia/commons/8/89/Razorpay_logo.svg" 
+                    alt="Razorpay" 
+                    className="h-5 w-auto brightness-0 invert"
+                    loading="lazy"
+                  />
                 </div>
               </button>
             </div>
