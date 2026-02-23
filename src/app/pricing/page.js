@@ -106,10 +106,10 @@ export default function PricingPage() {
             </div>
 
             {/* PAYMENT GATEWAYS */}
-            <div className="flex flex-col gap-4">
+            <div className="flex flex-col gap-2">
               
               {/* 1. PAYPAL (FIRST) */}
-              <div className="w-full min-h-[150px]">
+              <div className="w-full">
                 <PayPalScriptProvider options={{ "client-id": process.env.NEXT_PUBLIC_PAYPAL_CLIENT_ID }}>
                   <PayPalButtons
                     style={{ layout: "vertical", shape: "rect", color: "gold", label: "pay" }}
@@ -135,15 +135,22 @@ export default function PricingPage() {
                 </PayPalScriptProvider>
               </div>
 
-              <div className="relative my-2">
-                <div className="absolute inset-0 flex items-center"><span className="w-full border-t border-white/5"></span></div>
-                <div className="relative flex justify-center text-[10px] uppercase font-black italic"><span className="bg-[#0a0a0a] px-2 text-gray-500 tracking-widest">Secure Checkout</span></div>
+              {/* SEPARATOR */}
+              <div className="relative py-2">
+                <div className="absolute inset-0 flex items-center">
+                  <span className="w-full border-t border-white/5"></span>
+                </div>
+                <div className="relative flex justify-center">
+                  <span className="bg-[#0a0a0a] px-4 text-[10px] font-black uppercase tracking-widest text-white/20 italic">
+                    OR
+                  </span>
+                </div>
               </div>
 
               {/* 2. RAZORPAY (SECOND) */}
               <button 
                 onClick={handleRazorpay}
-                className="w-full bg-[#3395FF] hover:bg-[#2a7ed9] h-[50px] rounded-sm flex items-center justify-center transition-all shadow-md active:scale-[0.98] px-4"
+                className="w-full bg-[#3395FF] hover:bg-[#2a7ed9] h-[50px] rounded-sm flex items-center justify-center transition-all shadow-md active:scale-[0.98] px-4 mb-4"
               >
                 <div className="flex items-center gap-2 font-bold italic text-white">
                   <span className="text-lg not-italic font-bold tracking-tight">Pay with</span>
@@ -155,10 +162,23 @@ export default function PricingPage() {
                   />
                 </div>
               </button>
+
+              {/* SECURE CHECKOUT TEXT AT THE END */}
+              <div className="relative py-2">
+                <div className="absolute inset-0 flex items-center">
+                  <span className="w-full border-t border-white/5"></span>
+                </div>
+                <div className="relative flex justify-center">
+                  <span className="bg-[#0a0a0a] px-3 text-[10px] font-black uppercase tracking-[0.3em] text-gray-500 italic">
+                    Secure Checkout
+                  </span>
+                </div>
+              </div>
+
             </div>
             
-            <p className="text-center mt-8 text-[10px] text-white/20 font-black uppercase tracking-[0.3em]">
-              Instant Activation • Secured Payments
+            <p className="text-center mt-6 text-[10px] text-white/20 font-black uppercase tracking-[0.3em]">
+              Instant Activation • Lifetime Access
             </p>
           </div>
         </div>
