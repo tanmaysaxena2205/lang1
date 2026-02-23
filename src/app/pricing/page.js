@@ -3,14 +3,60 @@ import Link from 'next/link';
 import { Check, Infinity, ShieldCheck, ArrowRight } from 'lucide-react';
 import { PayPalButtons, PayPalScriptProvider } from "@paypal/react-paypal-js";
 import { useAuth } from "@clerk/nextjs";
-import { upgradeUserRole } from "@/lib/actions/user.actions"; // <--- IMPORT THE ACTION
+import { upgradeUserRole } from "@/lib/actions/user.actions";
 
 export default function PricingPage() {
   const { userId } = useAuth();
 
+  // RAZORPAY HANDLER
+  const handleRazorpay = async () => {
+    // 1. Load Razorpay SDK
+    const res = await fetch("https://checkout.razorpay.com/v1/checkout.js");
+    const scriptLoaded = await new Promise((resolve) => {
+      const script = document.createElement("script");
+      script.src = "https://checkout.razorpay.com/v1/checkout.js";
+      script.onload = () => resolve(true);
+      script.onerror = () => resolve(false);
+      document.body.appendChild(script);
+    });
+
+    if (!scriptLoaded) {
+      alert("Razorpay SDK failed to load. Are you online?");
+      return;
+    }
+
+    // 2. Initialize Options
+    const options = {
+      key: process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID, // Add this to your .env
+      amount: 17500, // ₹175 approx (Amount is in paise, so 17500 = ₹175.00)
+      currency: "INR",
+      name: "Langster",
+      description: "Lifetime Premium Access",
+      handler: async function (response) {
+        // This runs if payment is successful
+        try {
+          if (userId) {
+            await upgradeUserRole(userId);
+          }
+          window.location.href = "/dashboard?payment=success";
+        } catch (error) {
+          console.error("Role upgrade failed:", error);
+          alert("Payment successful, but database update failed. Contact support.");
+        }
+      },
+      prefill: {
+        name: "Learner",
+      },
+      theme: { color: "#F97316" }, // Match your orange theme
+    };
+
+    const paymentObject = new window.Razorpay(options);
+    paymentObject.open();
+  };
+
   return (
     <main className="bg-[#050505] text-white min-h-[100dvh] flex items-center justify-center px-6 lg:px-20">
-      <div className="max-w-7xl w-full grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+      <div className="max-w-7xl w-full grid grid-cols-1 lg:grid-cols-2 gap-16 items-center py-12">
         
         {/* --- LEFT SIDE: THE PITCH --- */}
         <div className="space-y-8 text-left">
@@ -68,42 +114,55 @@ export default function PricingPage() {
               <PriceFeature text="Future Content Additions" />
             </div>
 
-            {/* PAYPAL INTEGRATION */}
-            <div className="w-full min-h-[150px]">
-              <PayPalScriptProvider options={{ "client-id": process.env.NEXT_PUBLIC_PAYPAL_CLIENT_ID }}>
-                <PayPalButtons
-                  style={{ layout: "vertical", shape: "rect", color: "gold", label: "pay" }}
-                  createOrder={(data, actions) => {
-                    return actions.order.create({
-                      purchase_units: [{
-                        amount: { value: "0.01" }, // Changed to 2.00 to match your UI
-                        custom_id: userId || "guest",
-                        description: "Langster Lifetime Access"
-                      }],
-                    });
-                  }}
-                  onApprove={async (data, actions) => {
-                    try {
-                      const details = await actions.order.capture();
-                      
-                      // 1. Update the database role
-                      if (userId) {
-                        await upgradeUserRole(userId);
-                      }
+            {/* PAYMENT GATEWAYS */}
+            <div className="flex flex-col gap-4">
+              
+              {/* RAZORPAY BUTTON */}
+              <button 
+                onClick={handleRazorpay}
+                className="w-full bg-orange-500 hover:bg-orange-600 text-black font-black py-4 rounded-xl transition-all uppercase text-sm tracking-widest flex items-center justify-center gap-2"
+              >
+                Pay with UPI / Indian Card
+              </button>
 
-                      // 2. Redirect only after DB update is successful
-                      window.location.href = "/dashboard?payment=success";
-                    } catch (error) {
-                      console.error("Payment Capture Failed:", error);
-                      alert("Payment successful, but role update failed. Please contact support.");
-                    }
-                  }}
-                />
-              </PayPalScriptProvider>
+              <div className="relative my-2">
+                <div className="absolute inset-0 flex items-center"><span className="w-full border-t border-white/5"></span></div>
+                <div className="relative flex justify-center text-[10px] uppercase"><span className="bg-[#0a0a0a] px-2 text-gray-500">Or International</span></div>
+              </div>
+
+              {/* PAYPAL INTEGRATION */}
+              <div className="w-full min-h-[150px]">
+                <PayPalScriptProvider options={{ "client-id": process.env.NEXT_PUBLIC_PAYPAL_CLIENT_ID }}>
+                  <PayPalButtons
+                    style={{ layout: "vertical", shape: "rect", color: "gold", label: "pay" }}
+                    createOrder={(data, actions) => {
+                      return actions.order.create({
+                        purchase_units: [{
+                          amount: { value: "2.00" },
+                          custom_id: userId || "guest",
+                          description: "Langster Lifetime Access"
+                        }],
+                      });
+                    }}
+                    onApprove={async (data, actions) => {
+                      try {
+                        await actions.order.capture();
+                        if (userId) {
+                          await upgradeUserRole(userId);
+                        }
+                        window.location.href = "/dashboard?payment=success";
+                      } catch (error) {
+                        console.error("Payment Capture Failed:", error);
+                        alert("Payment successful, but role update failed.");
+                      }
+                    }}
+                  />
+                </PayPalScriptProvider>
+              </div>
             </div>
             
             <p className="text-center mt-8 text-[10px] text-white/20 font-black uppercase tracking-[0.3em]">
-              Instant Activation • Secured by PayPal
+              Instant Activation • Secured Payments
             </p>
           </div>
         </div>
