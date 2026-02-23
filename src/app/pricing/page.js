@@ -2,10 +2,11 @@
 import Link from 'next/link';
 import { Check, Infinity, ShieldCheck, ArrowRight } from 'lucide-react';
 import { PayPalButtons, PayPalScriptProvider } from "@paypal/react-paypal-js";
-import { useAuth } from "@clerk/nextjs"; // <--- ADD THIS IMPORT
+import { useAuth } from "@clerk/nextjs";
+import { upgradeUserRole } from "@/lib/actions/user.actions"; // <--- IMPORT THE ACTION
 
 export default function PricingPage() {
-  const { userId } = useAuth(); // <--- ADD THIS LINE to get the actual ID
+  const { userId } = useAuth();
 
   return (
     <main className="bg-[#050505] text-white min-h-[100dvh] flex items-center justify-center px-6 lg:px-20">
@@ -14,9 +15,7 @@ export default function PricingPage() {
         {/* --- LEFT SIDE: THE PITCH --- */}
         <div className="space-y-8 text-left">
           <div className="space-y-4">
-            <h2 className="text-orange-500 font-black uppercase tracking-[0.3em] text-sm">
-              Simple Pr
-            </h2>
+            <h2 className="text-orange-500 font-black uppercase tracking-[0.3em] text-sm">Simple Pricing</h2>
             <h1 className="text-6xl md:text-8xl font-black uppercase tracking-tighter leading-[0.9]">
               UNLIMITED <br /> 
               <span className="text-white/20">LEARNING.</span>
@@ -70,22 +69,34 @@ export default function PricingPage() {
             </div>
 
             {/* PAYPAL INTEGRATION */}
-            <div className="w-full min-h-[150px]"> {/* Container to prevent layout shift */}
+            <div className="w-full min-h-[150px]">
               <PayPalScriptProvider options={{ "client-id": process.env.NEXT_PUBLIC_PAYPAL_CLIENT_ID }}>
                 <PayPalButtons
                   style={{ layout: "vertical", shape: "rect", color: "gold", label: "pay" }}
                   createOrder={(data, actions) => {
                     return actions.order.create({
                       purchase_units: [{
-                        amount: { value: "0.01" },
-                        custom_id: userId || "guest", // <--- userId from useAuth()
+                        amount: { value: "2.00" }, // Changed to 2.00 to match your UI
+                        custom_id: userId || "guest",
                         description: "Langster Lifetime Access"
                       }],
                     });
                   }}
                   onApprove={async (data, actions) => {
-                    await actions.order.capture();
-                    window.location.href = "/dashboard?payment=success";
+                    try {
+                      const details = await actions.order.capture();
+                      
+                      // 1. Update the database role
+                      if (userId) {
+                        await upgradeUserRole(userId);
+                      }
+
+                      // 2. Redirect only after DB update is successful
+                      window.location.href = "/dashboard?payment=success";
+                    } catch (error) {
+                      console.error("Payment Capture Failed:", error);
+                      alert("Payment successful, but role update failed. Please contact support.");
+                    }
                   }}
                 />
               </PayPalScriptProvider>

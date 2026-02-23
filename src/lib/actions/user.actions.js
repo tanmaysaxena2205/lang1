@@ -7,6 +7,22 @@ import { revalidatePath } from "next/cache";
 /**
  * Fetches user from DB by Clerk ID
  */
+export async function upgradeUserRole(userId) {
+  try {
+    await connectToDatabase();
+
+    const updatedUser = await User.findOneAndUpdate(
+      { clerkId: userId },
+      { role: "premium" },
+      { new: true }
+    );
+
+    return JSON.parse(JSON.stringify(updatedUser));
+  } catch (error) {
+    console.error("Error upgrading user:", error);
+    throw new Error("Failed to upgrade user role.");
+  }
+}
 
 export async function getUserById(userId) {
   try {
