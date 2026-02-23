@@ -24,7 +24,7 @@ export default function Navbar() {
                 <span className="text-black font-black text-xl">L</span>
               </div>
               <span className="text-2xl font-black tracking-tighter text-white">
-                LANG<span className="text-orange-500">STER</span>
+                LANG<span className="text-orange-500">STR</span>
               </span>
             </Link>
           </div>
