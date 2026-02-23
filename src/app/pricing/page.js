@@ -10,8 +10,6 @@ export default function PricingPage() {
 
   // RAZORPAY HANDLER
   const handleRazorpay = async () => {
-    // 1. Load Razorpay SDK
-    const res = await fetch("https://checkout.razorpay.com/v1/checkout.js");
     const scriptLoaded = await new Promise((resolve) => {
       const script = document.createElement("script");
       script.src = "https://checkout.razorpay.com/v1/checkout.js";
@@ -21,33 +19,26 @@ export default function PricingPage() {
     });
 
     if (!scriptLoaded) {
-      alert("Razorpay SDK failed to load. Are you online?");
+      alert("Razorpay SDK failed to load.");
       return;
     }
 
-    // 2. Initialize Options
     const options = {
-      key: process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID, // Add this to your .env
-      amount: 17500, // ₹175 approx (Amount is in paise, so 17500 = ₹175.00)
+      key: process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID, 
+      amount: 17500, // ₹175 approx $2
       currency: "INR",
       name: "Langster",
       description: "Lifetime Premium Access",
       handler: async function (response) {
-        // This runs if payment is successful
         try {
-          if (userId) {
-            await upgradeUserRole(userId);
-          }
+          if (userId) await upgradeUserRole(userId);
           window.location.href = "/dashboard?payment=success";
         } catch (error) {
-          console.error("Role upgrade failed:", error);
-          alert("Payment successful, but database update failed. Contact support.");
+          console.error("Upgrade failed:", error);
         }
       },
-      prefill: {
-        name: "Learner",
-      },
-      theme: { color: "#F97316" }, // Match your orange theme
+      prefill: { name: "Learner" },
+      theme: { color: "#3395FF" },
     };
 
     const paymentObject = new window.Razorpay(options);
@@ -117,20 +108,7 @@ export default function PricingPage() {
             {/* PAYMENT GATEWAYS */}
             <div className="flex flex-col gap-4">
               
-              {/* RAZORPAY BUTTON */}
-              <button 
-                onClick={handleRazorpay}
-                className="w-full bg-orange-500 hover:bg-orange-600 text-black font-black py-4 rounded-xl transition-all uppercase text-sm tracking-widest flex items-center justify-center gap-2"
-              >
-                Pay with UPI / Indian Card
-              </button>
-
-              <div className="relative my-2">
-                <div className="absolute inset-0 flex items-center"><span className="w-full border-t border-white/5"></span></div>
-                <div className="relative flex justify-center text-[10px] uppercase"><span className="bg-[#0a0a0a] px-2 text-gray-500">Or International</span></div>
-              </div>
-
-              {/* PAYPAL INTEGRATION */}
+              {/* 1. PAYPAL (NOW FIRST) */}
               <div className="w-full min-h-[150px]">
                 <PayPalScriptProvider options={{ "client-id": process.env.NEXT_PUBLIC_PAYPAL_CLIENT_ID }}>
                   <PayPalButtons
@@ -147,18 +125,40 @@ export default function PricingPage() {
                     onApprove={async (data, actions) => {
                       try {
                         await actions.order.capture();
-                        if (userId) {
-                          await upgradeUserRole(userId);
-                        }
+                        if (userId) await upgradeUserRole(userId);
                         window.location.href = "/dashboard?payment=success";
                       } catch (error) {
                         console.error("Payment Capture Failed:", error);
-                        alert("Payment successful, but role update failed.");
                       }
                     }}
                   />
                 </PayPalScriptProvider>
               </div>
+
+              <div className="relative my-2">
+                <div className="absolute inset-0 flex items-center"><span className="w-full border-t border-white/5"></span></div>
+                <div className="relative flex justify-center text-[10px] uppercase font-black italic"><span className="bg-[#0a0a0a] px-2 text-gray-500 tracking-widest">Secure Checkout</span></div>
+              </div>
+
+              {/* 2. RAZORPAY (NOW SECOND) */}
+              <button 
+                onClick={handleRazorpay}
+                className="w-full bg-[#3395FF] hover:bg-[#2a7ed9] h-[50px] rounded-sm flex items-center justify-center transition-all shadow-md active:scale-[0.98]"
+              >
+                <div className="flex items-center gap-2 font-bold italic text-white">
+                  <span className="text-lg not-italic font-bold tracking-tight">Pay with</span>
+                  <svg width="100" height="25" viewBox="0 0 234 38" fill="none" xmlns="http://www.w3.org/2000/svg" className="mt-1">
+                    <path d="M25.7 37.3L15.9 19.3L1.5 37.3H0L13.8 19.3L0.2 0H1.7L15.1 19.3L28.5 0H30L16.4 19.3L30.2 37.3H25.7Z" fill="white"/>
+                    <path d="M44.5 37.3H40.2V0H44.5V37.3Z" fill="white"/>
+                    <path d="M68.8 30.6L67.7 37.3H63.1L69.6 0H74.8L81.3 37.3H76.7L75.6 30.6H68.8ZM70 26.6H74.4L72.2 13L70 26.6Z" fill="white"/>
+                    <path d="M96.3 37.3H92V0H96.3V37.3Z" fill="white"/>
+                    <path d="M120.6 30.6L119.5 37.3H114.9L121.4 0H126.6L133.1 37.3H128.5L127.4 30.6H120.6ZM121.8 26.6H126.2L124 13L121.8 26.6Z" fill="white"/>
+                    <path d="M153.3 19.3C153.3 29.3 147.2 37.3 138.8 37.3H133.6V0H138.8C147.2 0 153.3 8 153.3 18V19.3ZM149 19.3V18C149 10.3 144.7 4.1 137.9 4.1H137.9V33.2H137.9C144.7 33.2 149 27 149 19.3Z" fill="white"/>
+                    <path d="M176.6 30.6L175.5 37.3H170.9L177.4 0H182.6L189.1 37.3H184.5L183.4 30.6H176.6ZM177.8 26.6H182.2L180 13L177.8 26.6Z" fill="white"/>
+                    <path d="M201.2 37.3H196.9V0H201.2V37.3Z" fill="white"/>
+                  </svg>
+                </div>
+              </button>
             </div>
             
             <p className="text-center mt-8 text-[10px] text-white/20 font-black uppercase tracking-[0.3em]">
@@ -166,7 +166,6 @@ export default function PricingPage() {
             </p>
           </div>
         </div>
-
       </div>
     </main>
   );
