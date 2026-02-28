@@ -33,6 +33,7 @@ export default function RootLayout({ children }) {
           <link rel="dns-prefetch" href="https://accounts.google.com" />
         </head>
         <body className={`${geistSans.variable} ${geistMono.variable} antialiased bg-black text-white`}>
+          <CookieCleaner />
           <Navbar />
           {children}
         </body>

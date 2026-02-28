@@ -14,39 +14,50 @@ const isPublicRoute = createRouteMatcher([
 
 export default clerkMiddleware(async (auth, req) => {
   const { pathname } = req.nextUrl;
-
-  // 1. Lighter Public Route Check (No CPU-heavy auth yet)
   const isPublic = isPublicRoute(req);
+  
+  // STEP 1: The "Fast Lane" check (CPU Saver)
+  // Checking a cookie string is nearly 0ms of Active CPU.
+  const hasSessionCookie = req.cookies.has("Langstr_session");
 
-  // 2. Optimization: If it's a public route and NOT the landing page, 
-  // just return immediately. No need to know WHO the user is.
-  if (isPublic && pathname !== '/') {
+  // If it's a public page and they already have a session cookie, 
+  // skip the heavy Clerk auth check and let them through.
+  if (isPublic && pathname !== '/' && hasSessionCookie) {
     return NextResponse.next();
   }
 
-  // 3. ONLY NOW do we do the heavy lifting (parsing headers/JWT)
+  // STEP 2: The "Heavy" check
+  // We only reach this line if the cookie is missing OR it's a private route.
   const { userId } = await auth();
+  const response = NextResponse.next();
 
-  // Redirect logged-in users away from landing page
+  // STEP 3: Set the "Fast Lane" ticket
+  // If they are logged in, give them the cookie so the NEXT request is instant.
+  if (userId && !hasSessionCookie) {
+    response.cookies.set("family_app_session", "true", {
+      maxAge: 60 * 60 * 24, // valid for 24 hours
+      path: '/',
+      httpOnly: true, 
+      secure: true,
+      sameSite: 'lax',
+    });
+  }
+
+  // Handle redirects for your Family unit
   if (userId && pathname === '/') {
     return NextResponse.redirect(new URL('/dashboard', req.url));
   }
 
-  // Protect private routes
   if (!userId && !isPublic) {
     return NextResponse.redirect(new URL('/sign-up', req.url));
   }
 
-  return NextResponse.next();
+  return response;
 });
 
 export const config = {
   matcher: [
-    /*
-     * Optimized Matcher: 
-     * Skip all internal Next.js paths and static files entirely.
-     * This prevents the middleware from even waking up for these files.
-     */
+    // This regex tells Next.js to COMPLETELY ignore static files (images, css, etc.)
     '/((?!_next|[^?]*\\.(?:html?|css|js(?!on)|jpe?g|webp|png|gif|svg|ttf|woff2?|ico|csv|docx?|xlsx?|zip|webmanifest)).*)',
     '/(api|trpc)(.*)',
   ],
