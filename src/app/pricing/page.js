@@ -96,7 +96,7 @@ const handlePolar = () => {
                 <span className="font-bold uppercase tracking-wide text-sm">Secure one-time checkout</span>
              </div>
           </div>
-          <Link href="/" className="inline-flex items-center gap-2 text-white/20 hover:text-white transition-colors font-black uppercase tracking-widest text-xs">
+          <Link href="/" prefetch={false} className="inline-flex items-center gap-2 text-white/20 hover:text-white transition-colors font-black uppercase tracking-widest text-xs">
             <ArrowRight className="rotate-180" size={16} /> Back to Home
           </Link>
         </div>

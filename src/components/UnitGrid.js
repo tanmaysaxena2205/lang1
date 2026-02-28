@@ -60,7 +60,7 @@ export default function UnitGrid({ unit, activeUnit, activeLevel, isDailyLimitRe
                   <span className="text-[10px] font-black uppercase text-[#ff6600]/50">Lvl {levelIdNum}</span>
                 </button>
               ) : (
-                <Link href={`/unit/${unit.unitId}/level/${level.levelId}`} className="w-full aspect-square">
+                <Link href={`/unit/${unit.unitId}/level/${level.levelId}`} prefetch={false} className="w-full aspect-square">
                   <div className={`w-full h-full rounded-3xl border-2 flex flex-col items-center justify-center transition-all hover:scale-105 active:scale-95
                     ${isActive ? "bg-[#ff6600] border-[#ff6600] text-black shadow-[0_0_30px_rgba(255,102,0,0.3)]" : "bg-white/5 border-white/5 text-white"}
                   `}>

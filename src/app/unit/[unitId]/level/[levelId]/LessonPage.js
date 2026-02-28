@@ -33,7 +33,7 @@ export default function LessonPage({ user }) {
           <p className="text-white/40 font-bold mb-8 uppercase text-[10px] md:text-xs tracking-widest leading-relaxed">
             FREE TIER ALLOWS 1 LEVEL PER DAY.<br />COME BACK TOMORROW!
           </p>
-          <Link href="/dashboard">
+          <Link href="/dashboard" prefetch={false}>
             <button className="bg-[#ff6600] text-black w-full py-4 rounded-2xl font-black uppercase italic">
               Back to Dashboard
             </button>

@@ -85,7 +85,7 @@ export default function SignInPage() {
           </div>
 
           <p className="text-center text-gray-500 mt-8 text-xs font-medium">
-            New here? <Link href="/sign-up" className="text-white hover:text-orange-500 underline underline-offset-4 transition-colors">Create an Account</Link>
+            New here? <Link href="/sign-up" prefetch={false} className="text-white hover:text-orange-500 underline underline-offset-4 transition-colors">Create an Account</Link>
           </p>
         </div>
       </div>

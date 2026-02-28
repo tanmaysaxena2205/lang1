@@ -40,7 +40,7 @@ export default function HelpPage() {
         <div className="absolute top-0 right-0 -translate-y-1/2 translate-x-1/4 w-[600px] h-[600px] bg-orange-500/5 blur-[120px] rounded-full"></div>
         
         <div className="max-w-7xl mx-auto relative z-10">
-          <Link href="/" className="inline-flex items-center gap-2 text-white/20 hover:text-white transition-colors font-black uppercase tracking-widest text-xs mb-8">
+          <Link href="/" prefetch={false} className="inline-flex items-center gap-2 text-white/20 hover:text-white transition-colors font-black uppercase tracking-widest text-xs mb-8">
             <ArrowRight className="rotate-180" size={16} /> Back to Dashboard
           </Link>
           

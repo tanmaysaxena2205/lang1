@@ -152,7 +152,7 @@ export default function SignUpPage() {
 
           <p className="text-center text-gray-500 mt-8 text-xs font-medium">
 
-            Already learning? <Link href="/sign-in" className="text-white hover:text-orange-500 underline underline-offset-4 transition-colors">Sign In</Link>
+            Already learning? <Link href="/sign-in" prefetch={false} className="text-white hover:text-orange-500 underline underline-offset-4 transition-colors">Sign In</Link>
 
           </p>
 

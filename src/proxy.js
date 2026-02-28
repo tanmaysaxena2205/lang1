@@ -15,18 +15,16 @@ const isPublicRoute = createRouteMatcher([
 export default clerkMiddleware(async (auth, req) => {
   const { pathname } = req.nextUrl;
 
-  // STEP A: IMMEDIATE BYPASS (The Speed Fix)
-  // If it's a static file or the webhook, exit NOW. 
-  // Do not wait for auth() or sessions.
-  if (
-    pathname.startsWith('/_next') || 
-    pathname.includes('.') || 
-    pathname.startsWith('/api/webhooks')
-  ) {
+  // 1. Lighter Public Route Check (No CPU-heavy auth yet)
+  const isPublic = isPublicRoute(req);
+
+  // 2. Optimization: If it's a public route and NOT the landing page, 
+  // just return immediately. No need to know WHO the user is.
+  if (isPublic && pathname !== '/') {
     return NextResponse.next();
   }
 
-  // STEP B: CHECK AUTH (Only for actual page loads)
+  // 3. ONLY NOW do we do the heavy lifting (parsing headers/JWT)
   const { userId } = await auth();
 
   // Redirect logged-in users away from landing page
@@ -35,7 +33,7 @@ export default clerkMiddleware(async (auth, req) => {
   }
 
   // Protect private routes
-  if (!userId && !isPublicRoute(req)) {
+  if (!userId && !isPublic) {
     return NextResponse.redirect(new URL('/sign-up', req.url));
   }
 
@@ -45,14 +43,11 @@ export default clerkMiddleware(async (auth, req) => {
 export const config = {
   matcher: [
     /*
-     * Match all request paths except for the ones starting with:
-     * - _next/static (static files)
-     * - _next/image (image optimization files)
-     * - favicon.ico (favicon file)
+     * Optimized Matcher: 
+     * Skip all internal Next.js paths and static files entirely.
+     * This prevents the middleware from even waking up for these files.
      */
-    '/((?!_next/static|_next/image|favicon.ico|.*\\.(?:html?|css|js(?!on)|jpe?g|webp|png|gif|svg|ttf|woff2?|ico|csv|docx?|xlsx?|zip|webmanifest)).*)',
-    // Always run for API routes
+    '/((?!_next|[^?]*\\.(?:html?|css|js(?!on)|jpe?g|webp|png|gif|svg|ttf|woff2?|ico|csv|docx?|xlsx?|zip|webmanifest)).*)',
     '/(api|trpc)(.*)',
   ],
 };
-
