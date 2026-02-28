@@ -1,13 +1,23 @@
-'use client'
+'use client';
 import Link from 'next/link';
 import { Check, Infinity, ShieldCheck, ArrowRight } from 'lucide-react';
-import { PayPalButtons, PayPalScriptProvider } from "@paypal/react-paypal-js";
-import { useAuth, useUser } from "@clerk/nextjs"; // Added useUser
+import { useAuth, useUser } from "@clerk/nextjs"; 
 import { upgradeUserRole } from "@/lib/actions/user.actions";
 
 export default function PricingPage() {
   const { userId } = useAuth();
-  const { user } = useUser(); // Added to get user details for prefill
+  const { user } = useUser();
+
+  // POLAR HANDLER
+ const handlePolar = () => {
+  // Use the ID from the end of your link in screenshot 3
+  const checkoutId = "polar_cl_ljGdwDcBNEETNFNjlbBfR1GzBDM4PA4ROrML43F6BK";
+  
+  const metadata = JSON.stringify({ userId: userId });
+
+  // Redirect to your server-side checkout route
+  window.location.href = `/api/checkout?checkoutId=${checkoutId}&metadata=${encodeURIComponent(metadata)}`;
+};
 
   // RAZORPAY HANDLER
   const handleRazorpay = async () => {
@@ -26,7 +36,7 @@ export default function PricingPage() {
 
     const options = {
       key: process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID,
-      amount: 17500, // ₹175 approx $2
+      amount: 35000, // ₹350 approx $4
       currency: "INR",
       name: "Langster",
       description: "Lifetime Premium Access",
@@ -38,13 +48,11 @@ export default function PricingPage() {
           console.error("Upgrade failed:", error);
         }
       },
-      // UPDATED PREFILL TO BYPASS CONTACT SCREEN
       prefill: { 
         name: user?.fullName || "Learner",
         email: user?.primaryEmailAddress?.emailAddress || "",
-        contact: "918888888888" // Dummy number to skip the prompt
+        contact: "918888888888" 
       },
-      // SET READONLY TO PREVENT MANUAL ENTRY OVERRIDE
       readonly: {
         contact: true,
         email: true,
@@ -87,6 +95,7 @@ export default function PricingPage() {
             <ArrowRight className="rotate-180" size={16} /> Back to Home
           </Link>
         </div>
+
         {/* --- RIGHT SIDE: THE LARGE CARD --- */}
         <div className="relative w-full max-w-xl justify-self-center lg:justify-self-end">
           <div className="absolute -inset-2 bg-orange-500 rounded-[3.5rem] blur-2xl opacity-10"></div>
@@ -102,7 +111,7 @@ export default function PricingPage() {
               </div>
             </div>
             <div className="flex items-baseline gap-2 mb-12">
-              <span className="text-9xl font-black text-white tracking-tighter">$2</span>
+              <span className="text-9xl font-black text-white tracking-tighter">$4</span>
               <span className="text-gray-500 font-black uppercase text-xl italic">USD</span>
             </div>
             <div className="space-y-6 mb-12">
@@ -111,35 +120,21 @@ export default function PricingPage() {
               <PriceFeature text="Interactive Progress Tracking" />
               <PriceFeature text="Future Content Additions" />
             </div>
+
             {/* PAYMENT GATEWAYS */}
             <div className="flex flex-col gap-2">
              
-              {/* 1. PAYPAL (FIRST) */}
-              <div className="w-full">
-                <PayPalScriptProvider options={{ "client-id": process.env.NEXT_PUBLIC_PAYPAL_CLIENT_ID }}>
-                  <PayPalButtons
-                    style={{ layout: "vertical", shape: "rect", color: "gold", label: "pay" }}
-                    createOrder={(data, actions) => {
-                      return actions.order.create({
-                        purchase_units: [{
-                          amount: { value: "2.00" },
-                          custom_id: userId || "guest",
-                          description: "Langster Lifetime Access"
-                        }],
-                      });
-                    }}
-                    onApprove={async (data, actions) => {
-                      try {
-                        await actions.order.capture();
-                        if (userId) await upgradeUserRole(userId);
-                        window.location.href = "/dashboard?payment=success";
-                      } catch (error) {
-                        console.error("Payment Capture Failed:", error);
-                      }
-                    }}
-                  />
-                </PayPalScriptProvider>
-              </div>
+              {/* 1. POLAR (REPLACED PAYPAL) */}
+              <button
+                onClick={handlePolar}
+                className="w-full bg-white hover:bg-gray-100 h-[55px] rounded-lg flex items-center justify-center transition-all shadow-md active:scale-[0.98] px-4 group"
+              >
+                <div className="flex items-center gap-2 font-black text-black uppercase tracking-widest text-sm">
+                  <span>Pay with Polar</span>
+                  <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
+                </div>
+              </button>
+
               {/* SEPARATOR */}
               <div className="relative py-2">
                 <div className="absolute inset-0 flex items-center">
@@ -151,10 +146,11 @@ export default function PricingPage() {
                   </span>
                 </div>
               </div>
-              {/* 2. RAZORPAY (SECOND) */}
+
+              {/* 2. RAZORPAY */}
               <button
                 onClick={handleRazorpay}
-                className="w-full bg-[#3395FF] hover:bg-[#2a7ed9] h-[50px] rounded-sm flex items-center justify-center transition-all shadow-md active:scale-[0.98] px-4 mb-4"
+                className="w-full bg-[#3395FF] hover:bg-[#2a7ed9] h-[55px] rounded-lg flex items-center justify-center transition-all shadow-md active:scale-[0.98] px-4 mb-4"
               >
                 <div className="flex items-center gap-2 font-bold italic text-white">
                   <span className="text-lg not-italic font-bold tracking-tight">Pay with</span>
@@ -166,7 +162,8 @@ export default function PricingPage() {
                   />
                 </div>
               </button>
-              {/* SECURE CHECKOUT TEXT AT THE END */}
+
+              {/* SECURE CHECKOUT TEXT */}
               <div className="relative py-2">
                 <div className="absolute inset-0 flex items-center">
                   <span className="w-full border-t border-white/5"></span>

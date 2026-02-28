@@ -18,39 +18,10 @@ export default async function DashboardPage() {
   return (
     <div className="min-h-screen bg-[#0a0a0a] text-white font-sans pb-20 overflow-x-hidden">
       
-      {/* HEADER */}
-      <header className="sticky top-0 z-[100] w-full bg-[#0a0a0a]/95 backdrop-blur-md border-b border-white/5 p-4 md:p-6">
-        <div className="max-w-5xl mx-auto flex justify-between items-center">
-          <h1 className="text-xl md:text-3xl font-black italic tracking-tighter text-[#ff6600]">
-            LANGSTER
-          </h1>
-          
-          {/* Pass the pre-fetched user data as a prop */}
-          <UserStats user={user} />
-        </div>
-      </header>
-
       <main className="relative z-10 max-w-5xl mx-auto px-4 md:px-6 mt-8 md:mt-16">
         {/* Pass the pre-fetched user data as a prop */}
         <CurriculumList user={user} />
       </main>
-    </div>
-  );
-}
-
-// Sub-components as standard functions to avoid "Double Fetching"
-function UserStats({ user }) {
-  return (
-    <div className="flex gap-2 md:gap-4 items-center">
-      {user?.role === "free" && (
-        <span className="bg-orange-500/10 text-[#ff6600] px-2 py-0.5 rounded-md text-[8px] md:text-[10px] font-black uppercase border border-orange-500/20">
-          Free
-        </span>
-      )}
-      <div className="bg-white/5 px-3 py-1.5 md:px-4 md:py-2 rounded-full border border-white/10 flex items-center gap-2">
-        <Star size={14} className="text-yellow-400 fill-yellow-400 md:size-[18px]" />
-        <span className="font-black text-xs md:text-base">{user?.xp || 0} XP</span>
-      </div>
     </div>
   );
 }

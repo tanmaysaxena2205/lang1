@@ -16,7 +16,38 @@ export const SECTION_1_DATA = [
           { type: "intro", word: "das Wasser", translation: "The Water", content: "Neuter nouns use 'das'. Water is 'das Wasser'." },
           { type: "choice", q: "Which one is 'The Water'?", options: ["der Wasser", "die Wasser", "das Wasser"], a: "das Wasser" },
 
-         
+          // --- CONCEPT 2: THE CONNECTOR "UND" ---
+          { type: "intro", word: "und", translation: "and", content: "'und' means and in English." },
+          { type: "jumble", q: "The coffee and the water", options: ["das", "der", "und", "Wasser", "Kaffee"], a: "der Kaffee und das Wasser" },
+          { type: "jumble", q: "Water and coffee", options: ["und", "Kaffee", "Wasser"], a: "wasser und kaffee" },
+
+          // --- CONCEPT 3: THE VERB "IST" ---
+          { type: "intro", word: "ist", translation: "is", content: "'ist' links your subject to a description." },
+          { type: "intro", word: "kalt", translation: "cold", content: "'kalt' is an adjective. It usually comes after 'ist'." },
+          { type: "jumble", q: "The water is cold", options: ["kalt", "ist", "das", "Wasser"], a: "das Wasser ist kalt" },
+          { type: "choice", q: "How do you say 'The coffee is cold'?", options: ["Der Kaffee ist kalt", "Das Kaffee ist kalt", "Kaffee ist der kalt"], a: "Der Kaffee ist kalt" },
+
+          // --- CONCEPT 4: FEMININE & NEW ADJECTIVE ---
+          { type: "intro", word: "die Milch", translation: "The Milk", content: "Feminine nouns use 'die'. Milch ends with a soft 'ch' sound." },
+          { type: "intro", word: "heiß", translation: "hot", content: "Notice the 'ß' – it sounds like 'ss'. 'heiß' means hot." },
+          { type: "jumble", q: "The milk is hot", options: ["heiß", "ist", "die", "Milch"], a: "die Milch ist heiß" },
+          { type: "jumble", q: "The milk and the coffee", options: ["die", "der", "und", "Kaffee", "Milch"], a: "die Milch und der Kaffee" },
+
+          // --- CONCEPT 5: NEGATION ---
+          { type: "intro", word: "nicht", translation: "not", content: "To say 'is not', use 'ist nicht'." },
+          { type: "jumble", q: "The coffee is not cold", options: ["kalt", "nicht", "ist", "der", "Kaffee"], a: "der Kaffee ist nicht kalt" },
+          { type: "jumble", q: "The milk is not hot", options: ["heiß", "nicht", "ist", "die", "Milch"], a: "die Milch ist nicht heiß" },
+          { type: "choice", q: "What does 'nicht' mean?", options: ["and", "is", "not"], a: "not" },
+
+          // --- CONCEPT 6: QUESTIONS ---
+          { type: "intro", title: "Questions", content: "Swap 'ist' and the 'noun' to ask a question. 'Ist das...?'" },
+          { type: "jumble", q: "Is the water cold?", options: ["kalt", "Wasser", "das", "Ist"], a: "Ist das Wasser kalt" },
+          { type: "jumble", q: "Is the milk hot?", options: ["heiß", "Milch", "die", "Ist"], a: "Ist die Milch heiß" },
+
+          // --- CONCEPT 7: FINAL RECAP & BOSS ---
+          { type: "boss", q: "The coffee is hot and the milk is cold.", options: ["Der Kaffee ist heiß und die Milch ist kalt", "Das Kaffee ist heiß und der Milch ist kalt"], a: "Der Kaffee ist heiß und die Milch ist kalt" },
+          { type: "boss", q: "Is the coffee cold?", options: ["Ist der Kaffee kalt?", "Der Kaffee ist kalt?", "Kalt ist der Kaffee?"], a: "Ist der Kaffee kalt?" },
+          { type: "boss", q: "The water is not hot, it is cold.", options: ["Das Wasser ist nicht heiß, es ist kalt", "Das Wasser nicht ist heiß, es ist kalt"], a: "Das Wasser ist nicht heiß, es ist kalt" }
         ]
       },
       // src/data/section-1.js (Unit 1, Level 2)
@@ -368,6 +399,179 @@ export const SECTION_1_DATA = [
     { type: "boss", q: "Translate: 'She is not old.'", options: ["Sie ist nicht alt", "Er ist nicht alt"], a: "Sie ist nicht alt" },
     { type: "jumble", q: "That is my sister. She is nice.", options: ["nett", "ist", "sie", "Schwester", "meine", "ist", "das"], a: "das ist meine Schwester sie ist nett" },
     { type: "boss", q: "Final Test: Which word is feminine?", options: ["Opa", "Onkel", "Tante"], a: "Tante" }
+  ]
+},
+// src/data/section-1.js (Unit 2, Level 3)
+// src/data/section-1.js (Unit 2, Level 4)
+// src/data/section-1.js (Unit 2, Level 4)
+{
+  levelId: "4",
+  title: "Family Tree Builder",
+  questions: [
+    // --- STEP 1: THE SON (MASCULINE BRANCH) ---
+    { type: "intro", word: "der Sohn", translation: "The Son", content: "Every family tree has branches. 'Sohn' is Masculine (der/mein/dein)." },
+    { type: "choice", q: "How do you say 'Your son'?", options: ["deine Sohn", "dein Sohn"], a: "dein Sohn" },
+    { type: "jumble", q: "My son is young", options: ["jung", "ist", "mein", "Sohn"], a: "mein Sohn ist jung" },
+
+    // --- STEP 2: THE DAUGHTER (FEMININE BRANCH) ---
+    { type: "intro", word: "die Tochter", translation: "The Daughter", content: "Daughter is Feminine: 'die Tochter' (die/meine/deine)." },
+    
+    { type: "choice", q: "How do you say 'My daughter'?", options: ["mein Tochter", "meine Tochter"], a: "meine Tochter" },
+    { type: "jumble", q: "Is your daughter nice?", options: ["nett", "Tochter", "deine", "Ist"], a: "Ist deine Tochter nett" },
+
+    // --- STEP 3: THE PLURAL (KINDER) ---
+    { type: "intro", word: "die Kinder", translation: "The Children", content: "Plural nouns like 'Kinder' use 'meine/deine' and the verb 'sind'." },
+    { type: "jumble", q: "Your children are very nice", options: ["nett", "sehr", "sind", "Kinder", "deine"], a: "deine Kinder sind sehr nett" },
+    { type: "jumble", q: "My son and my daughter are children", options: ["Kinder", "sind", "Tochter", "meine", "und", "Sohn", "mein"], a: "mein Sohn und meine Tochter sind children" },
+
+    // --- STEP 4: SIZE DESCRIPTION (KLEIN) ---
+    { type: "intro", word: "klein", translation: "small / short", content: "Use 'klein' to describe height, especially for children!" },
+    { type: "choice", q: "How do you say 'is small'?", options: ["ist klein", "ist groß", "ist alt"], a: "ist klein" },
+    { type: "jumble", q: "My daughter is small", options: ["klein", "ist", "meine", "Tochter"], a: "meine Tochter ist klein" },
+
+    // --- STEP 5: THE GRANDCHILDREN (ENKEL / ENKELIN) ---
+    { type: "intro", word: "Enkel & Enkelin", translation: "Grandson & Granddaughter", content: "The bottom of the tree! 'Enkel' (M) and 'Enkelin' (F)." },
+    { type: "jumble", q: "That is my grandson", options: ["Enkel", "mein", "ist", "das"], a: "das ist mein Enkel" },
+    { type: "jumble", q: "Your granddaughter is small", options: ["klein", "ist", "deine", "Enkelin"], a: "deine Enkelin ist klein" },
+
+    // --- STEP 6: CONNECTING THE BRANCHES ---
+    { type: "jumble", q: "Who is that? That is my daughter", options: ["Tochter", "meine", "ist", "das", "das", "ist", "wer"], a: "wer ist das das ist meine Tochter" },
+    { type: "jumble", q: "He is my son and she is my daughter", options: ["Tochter", "meine", "ist", "sie", "und", "Sohn", "mein", "ist", "er"], a: "er ist mein Sohn und sie ist meine Tochter" },
+
+    // --- STEP 7: COMPLEX TREE DESCRIPTIONS ---
+    { type: "jumble", q: "My parents and my children are here", options: ["hier", "sind", "Kinder", "meine", "und", "Eltern", "meine"], a: "meine Eltern und meine Kinder sind hier" },
+    { type: "jumble", q: "Your grandson is young but your grandfather is old", options: ["alt", "ist", "Opa", "dein", "aber", "jung", "ist", "Enkel", "dein"], a: "dein Enkel ist jung aber dein Opa ist alt" },
+
+    // --- FINAL BOSS CHALLENGES ---
+    { type: "boss", q: "Translate: 'Is that your son?'", options: ["Ist das dein Sohn?", "Ist das deine Sohn?"], a: "Ist das dein Sohn?" },
+    { type: "boss", q: "Which word means 'The Children'?", options: ["die Kinder", "der Kinder", "das Kinder"], a: "die Kinder" },
+    { type: "jumble", q: "Final Tree: My father my son and my grandson", options: ["Enkel", "mein", "und", "Sohn", "mein", "Vater", "mein"], a: "mein Vater mein Sohn und mein Enkel" },
+    { type: "boss", q: "Which pronoun replaces 'die Tochter'?", options: ["er", "sie"], a: "sie" },
+    { type: "boss", q: "Final Test: 'My children are not small.'", options: ["Meine Kinder sind nicht klein", "Mein Kinder ist nicht klein"], a: "Meine Kinder sind nicht klein" }
+  ]
+},
+// src/data/section-1.js (Unit 2, Level 5)
+// src/data/section-1.js (Unit 2, Level 5)
+// src/data/section-1.js (Unit 2, Level 5)
+// src/data/section-1.js (Unit 2, Level 5)
+{
+  levelId: "5",
+  title: "The Big Family Dinner",
+  questions: [
+    // --- ITEM 1: THE COUSINS (MALE/FEMALE) ---
+    { type: "intro", word: "Cousin & Cousine", translation: "Cousin (m) & Cousin (f)", content: "The children of your Tante/Onkel. 'Der Cousin' (m) and 'Die Cousine' (f)." },
+    
+    { type: "choice", q: "How do you say 'My female cousin'?", options: ["mein Cousine", "meine Cousine"], a: "meine Cousine" },
+    { type: "jumble", q: "My cousin is there", options: ["dort", "ist", "mein", "Cousin"], a: "mein Cousin ist dort" },
+
+    // --- ITEM 2: NEPHEW & NIECE ---
+    { type: "intro", word: "Neffe & Nichte", translation: "Nephew & Niece", content: "The children of your brother/sister. 'Der Neffe' (m) and 'Die Nichte' (f)." },
+    { type: "choice", q: "Which one is feminine?", options: ["Neffe", "Nichte"], a: "Nichte" },
+    { type: "jumble", q: "Is that your niece?", options: ["Nichte", "deine", "das", "Ist"], a: "Ist deine Nichte das" },
+
+    // --- ITEM 3: GRANDSON & GRANDDAUGHTER ---
+    { type: "intro", word: "Enkel & Enkelin", translation: "Grandson & Granddaughter", content: "The children of your son/daughter. 'Der Enkel' (m) and 'Die Enkelin' (f)." },
+    
+    { type: "jumble", q: "Your grandson is young", options: ["jung", "ist", "dein", "Enkel"], a: "dein Enkel ist jung" },
+    { type: "jumble", q: "Who is that? That is my granddaughter", options: ["Enkelin", "meine", "ist", "das", "das", "ist", "wer"], a: "wer ist das das ist meine Enkelin" },
+
+    // --- ITEM 4: THE FAMILY (DIE FAMILIE) ---
+    { type: "intro", word: "die Familie", translation: "The Family", content: "Feminine singular. Use 'hat' because the family is one group." },
+    { type: "choice", q: "Translate: 'Your family'", options: ["deine Familie", "dein Familie"], a: "deine Familie" },
+    { type: "jumble", q: "My family is very big", options: ["groß", "sehr", "ist", "meine", "Familie"], a: "meine Familie ist sehr groß" },
+
+    // --- ITEM 5: VERB CONJUGATION (HAT vs HABEN) ---
+    { type: "intro", word: "hat / haben", translation: "has / have", content: "Use 'hat' for one person and 'haben' for many (the parents/they)." },
+    { type: "choice", q: "Which one matches 'Die Eltern' (The parents)?", options: ["hat", "haben"], a: "haben" },
+    { type: "jumble", q: "The children have hunger", options: ["Hunger", "haben", "Kinder", "die"], a: "die Kinder haben Hunger" },
+
+    // --- PROGRESSIVE MIXING (The Dinner Scene) ---
+    { type: "jumble", q: "My cousin and my niece have hunger", options: ["Hunger", "haben", "Nichte", "meine", "und", "Cousin", "mein"], a: "mein Cousin und meine Nichte haben Hunger" },
+    { type: "jumble", q: "He is my nephew and he is very nice", options: ["nett", "sehr", "ist", "er", "und", "Neffe", "mein", "ist", "er"], a: "er ist mein Neffe und er ist sehr nett" },
+    { type: "jumble", q: "Your granddaughter or your grandson has hunger", options: ["Hunger", "hat", "Enkel", "dein", "oder", "Enkelin", "deine"], a: "deine Enkelin oder dein Enkel hat Hunger" },
+
+    // --- FINAL BOSS CHALLENGES ---
+    { type: "boss", q: "Translate: 'Is that your cousin (f)?'", options: ["Ist das deine Cousine?", "Ist das dein Cousine?"], a: "Ist das deine Cousine?" },
+    { type: "boss", q: "Which pronoun describes 'der Neffe'?", options: ["er", "sie"], a: "er" },
+    { type: "jumble", q: "Final: My family is there and they have hunger", options: ["Hunger", "haben", "sie", "und", "dort", "ist", "meine", "Familie"], a: "meine Familie ist dort und sie haben Hunger" },
+    { type: "boss", q: "Which word means 'Granddaughter'?", options: ["Enkelin", "Nichte", "Tochter"], a: "Enkelin" },
+    { type: "boss", q: "Final Check: 'My niece is not small.'", options: ["Meine Nichte ist nicht klein", "Mein Nichte ist nicht klein"], a: "Meine Nichte ist nicht klein" }
+  ]
+} ]
+},
+{
+  unitId: "3",
+  unitTitle: "Use Adjectives",
+  levels: [
+    // src/data/section-1.js (Unit 3, Level 1)
+// src/data/section-1.js (Unit 3, Level 1)
+{
+  levelId: "1",
+  title: "Common Opposites",
+  questions: [
+    // --- ITEM 1: TRAURIG vs GLÜCKLICH (SAD/HAPPY) ---
+    { 
+      type: "intro", 
+      word: "traurig / glücklich", 
+      translation: "sad / happy", 
+      content: "Describe emotions! 'Traurig' (sad) and 'glücklich' (happy)." 
+    },
+    
+    { type: "choice", q: "How do you say 'My daughter is happy'?", options: ["Meine Tochter ist glücklich", "Meine Tochter ist traurig"], a: "Meine Tochter ist glücklich" },
+    { type: "jumble", q: "Your son is sad", options: ["traurig", "ist", "dein", "Sohn"], a: "dein Sohn ist traurig" },
+
+    // --- ITEM 2: MÜDE vs WACH (TIRED/AWAKE) ---
+    { 
+      type: "intro", 
+      word: "müde / wach", 
+      translation: "tired / awake", 
+      content: "Use 'müde' for tired and 'wach' for awake." 
+    },
+    { type: "choice", q: "If you want to sleep, you are...", options: ["wach", "müde"], a: "müde" },
+    { type: "jumble", q: "My Grandfather is awake but my grandmother is tired", options: ["müde", "ist", "Oma", "meine", "aber", "wach", "ist", "Opa", "mein"], a: "mein Opa ist wach aber meine Oma ist müde" },
+
+    // --- ITEM 3: SCHNELL vs LANGSAM (FAST/SLOW) ---
+    { 
+      type: "intro", 
+      word: "schnell / langsam", 
+      translation: "fast / slow", 
+      content: "Describe movement! 'Schnell' (fast) vs 'Langsam' (slow)." 
+    },
+    
+    { type: "jumble", q: "Your grandson is fast", options: ["schnell", "ist", "dein", "Enkel"], a: "dein Enkel ist schnell" },
+    { type: "jumble", q: "My grandmother is slow", options: ["langsam", "ist", "meine", "Oma"], a: "meine Oma ist langsam" },
+
+    // --- ITEM 4: LAUT vs LEISE (LOUD/QUIET) ---
+    { 
+      type: "intro", 
+      word: "laut / leise", 
+      translation: "loud / quiet", 
+      content: "Is the family dinner 'laut' or 'leise'?" 
+    },
+    { type: "choice", q: "Which one means 'quiet'?", options: ["laut", "leise"], a: "leise" },
+    { type: "jumble", q: "The children are very loud", options: ["laut", "sehr", "sind", "Kinder", "die"], a: "die Kinder sind sehr laut" },
+
+    // --- ITEM 5: KLUG vs DUMM (SMART/DUMB) ---
+    { 
+      type: "intro", 
+      word: "klug / dumm", 
+      translation: "smart / dumb", 
+      content: "Use 'klug' for smart. Avoid 'dumm' unless you're joking!" 
+    },
+    { type: "choice", q: "Which word means 'smart'?", options: ["klug", "dumm"], a: "klug" },
+    { type: "jumble", q: "My family is very smart", options: ["klug", "sehr", "ist", "meine", "Familie"], a: "meine Familie ist sehr klug" },
+
+    // --- PROGRESSIVE MIXING (Using Unit 2 Family Tree + New Adjectives) ---
+    { type: "jumble", q: "My niece is happy and my nephew is loud", options: ["laut", "ist", "Neffe", "mein", "und", "glücklich", "ist", "Nichte", "meine"], a: "meine Nichte ist glücklich und mein Neffe ist laut" },
+    { type: "jumble", q: "Is your uncle slow or fast?", options: ["schnell", "oder", "langsam", "Onkel", "dein", "Ist"], a: "Ist dein Onkel langsam oder schnell" },
+    { type: "jumble", q: "The parents are tired but the children are awake", options: ["wach", "sind", "Kinder", "die", "aber", "müde", "sind", "Eltern", "die"], a: "die Eltern sind müde aber die Kinder sind wach" },
+
+    // --- FINAL BOSS CHALLENGES ---
+    { type: "boss", q: "Translate: 'Is your granddaughter smart?'", options: ["Ist deine Enkelin klug?", "Ist dein Enkelin klug?"], a: "Ist deine Enkelin klug?" },
+    { type: "boss", q: "Which is the opposite of 'leise'?", options: ["laut", "schnell", "wach"], a: "laut" },
+    { type: "jumble", q: "Final: My cousin is fast but she is tired", options: ["müde", "ist", "sie", "aber", "schnell", "ist", "Cousine", "meine"], a: "meine Cousine ist schnell aber sie ist müde" },
+    { type: "boss", q: "Which word means 'awake'?", options: ["wach", "müde"], a: "wach" },
+    { type: "boss", q: "Final Test: 'My family is happy.'", options: ["Meine Familie ist glücklich", "Mein Familie ist glücklich"], a: "Meine Familie ist glücklich" }
   ]
 }
   ]
