@@ -65,7 +65,7 @@ export const SECTION_1_DATA = [
       { type: "intro", word: "möchte", translation: "would like", content: "This is the polite way to order. 'Ich möchte' means 'I would like'." },
       { type: "choice", q: "How do you say 'would like'?", options: ["ist", "möchte", "kalt"], a: "möchte" },
       { type: "jumble", q: "I would like coffee", options: ["möchte", "Ich", "Kaffee"], a: "Ich möchte Kaffee" },
-      { type: "jumble", q: "I would like water", options: ["Wasser", "Ich", "möchte"], a: "Ich möchte water" },
+      { type: "jumble", q: "I would like water", options: ["Wasser", "Ich", "möchte"], a: "Ich möchte wasser" },
 
       // --- CONCEPT 3: THE ACCUSATIVE "DEN" (THE BIG CHANGE) ---
       { type: "intro", word: "den Kaffee", translation: "the coffee (as an object)", content: "Grammar Alert! When you want 'the' coffee, 'der' changes to 'den'. This only happens to Masculine words!" },
