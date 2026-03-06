@@ -106,7 +106,7 @@ export const SECTION_1_DATA = [
       // --- CONCEPT 1: FORMAL GREETING ---
       { type: "intro", word: "Guten Tag", translation: "Good day", content: "This is the standard formal greeting in Germany. Use it when entering a café." },
       { type: "choice", q: "How do you say 'Good day'?", options: ["Guten Tag", "Hallo Tag", "Guten Wasser"], a: "Guten Tag" },
-      { type: "jumble", q: "Good day, the coffee please", options: ["Tag", "bitte", "Kaffee", "Guten", "der"], a: "Guten Tag der Kaffee please" },
+      { type: "jumble", q: "Good day, the coffee please", options: ["Tag", "bitte", "Kaffee", "Guten", "der"], a: "Guten Tag der Kaffee bitte" },
 
       // --- CONCEPT 2: GETTING ATTENTION ---
       { type: "intro", word: "Entschuldigung", translation: "Excuse me", content: "Use this long word to get a waiter's attention politely." },
