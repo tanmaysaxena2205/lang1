@@ -10,7 +10,6 @@ export const ALL_ASSETS = [
  { src: "/images/sidewalk.svg", label: "der Bürgersteig" },
   { src: "/images/board.svg", label: "der Brett" },
   { src: "/images/fox.svg", label: "der Fuchs" },
-  { src: "/images/nutcracker.svg", label: "der Nussknacker" },
   { src: "/images/muzzle.svg", label: "der Maulkorb " },
   { src: "/images/bike.svg", label: "das Motorrad" },
   { src: "/images/gymnast.svg", label: "die Turnerin" },

@@ -55,9 +55,11 @@ export async function getUserById(userId) {
 
 // Update this to match your actual course map
 const COURSE_STRUCTURE = {
-  1: { totalUnits: 3 }, 
-  2: { totalUnits: 5 }, 
-  3: { totalUnits: 2 }, 
+  1: { totalUnits: 9 }, 
+  2: { totalUnits: 24 }, 
+  3: { totalUnits: 28 }, 
+  4: { totalUnits: 51 }, 
+  5: { totalUnits: 44 }, 
 };
 
 export async function completeSublevel(clerkId, finishedId) {

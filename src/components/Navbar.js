@@ -115,10 +115,6 @@ export default function Navbar() {
             <SignedIn>
               <div className="flex items-center">
                 {/* WALLET WITH MARGIN */}
-                <Link 
-                  href="/billing" 
-                  className="group flex items-center gap-2 bg-zinc-900 hover:bg-zinc-800 border border-white/5 px-4 py-2 rounded-xl transition-all active:scale-95 ml-4"
-                >
                   <svg 
                     xmlns="http://www.w3.org/2000/svg" 
                     width="20" 
@@ -137,7 +133,7 @@ export default function Navbar() {
                   <span className="text-white font-black text-sm tracking-tight">
                     ${walletBalance}
                   </span>
-                </Link>
+               
 
                 <Link href="/dashboard" className="text-sm font-bold text-gray-300 hover:text-orange-500 transition-all px-4 ml-2">
                   Dashboard

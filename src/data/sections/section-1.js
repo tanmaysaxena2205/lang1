@@ -733,30 +733,30 @@ export const SECTION_1_DATA = [
     },
 
     // --- LEVEL 4: INTRODUCTIONS ---
-   {
+    {
       levelId: "4",
       title: "Introductions",
       questions: [
         { id: "4-4-1", type: "intro", word: "Ich heiße...", translation: "My name is...", content: "Means 'I am called...'" },
-        { id: "4-4-2", type: "choice", q: "How do you say your name?", options: ["Ich bin", "Ich heiße"], a: "Ich heiße" },
-        { id: "4-4-3", type: "jumble", q: "My name is Hans", options: ["heiße", "Hans", "Ich"], a: "Ich heiße Hans" },
+        { id: "4-4-2", type: "choice", q: "How do you say 'I am called'?", options: ["Ich bin", "Ich heiße"], a: "Ich heiße" },
+        { id: "4-4-3", type: "jumble", q: "My name is Hans", options: ["Hans", "Ich", "heiße"], a: "Ich heiße Hans" },
         { id: "4-4-4", type: "intro", word: "Wie heißt du?", translation: "What is your name? (Informal)", content: "For peers/children." },
-        { id: "4-4-5", type: "choice", q: "Ask a child their name:", options: ["Wie heißt du?", "Wie heißen Sie?"], a: "Wie heißt du?" },
-        { id: "4-4-6", type: "jumble", q: "Hello what is your name", options: ["Wie", "Hallo", "heißt", "du"], a: "Hallo Wie heißt du" },
-        { id: "4-4-7", type: "intro", word: "Freut mich", translation: "Pleased to meet you", content: "Short and polite." },
-        { id: "4-4-8", type: "choice", q: "After meeting someone say:", options: ["Freut mich", "Tschüss"], a: "Freut mich" },
-        { id: "4-4-9", type: "jumble", q: "My name is Sarah pleased to meet you", options: ["Freut", "Ich", "mich", "heiße", "Sarah"], a: "Ich heiße Sarah Freut mich" },
+        { id: "4-4-5", type: "choice", q: "Ask a child their name:", options: ["Wie heißen Sie?", "Wie heißt du?"], a: "Wie heißt du?" },
+        { id: "4-4-6", type: "jumble", q: "Hello what is your name", options: ["heißt", "Wie", "Hallo", "du"], a: "Hallo Wie heißt du" },
+        { id: "4-4-7", type: "intro", word: "Freut mich", translation: "Pleased to meet you", content: "Short and polite response." },
+        { id: "4-4-8", type: "choice", q: "Which means 'Pleased to meet you'?", options: ["Freut mich", "Tschüss"], a: "Freut mich" },
+        { id: "4-4-9", type: "jumble", q: "My name is Sarah pleased to meet you", options: ["Sarah", "heiße", "Ich", "mich", "Freut"], a: "Ich heiße Sarah Freut mich" },
         { id: "4-4-10", type: "intro", word: "Das ist...", translation: "This is...", content: "For introducing others." },
-        { id: "4-4-11", type: "choice", q: "Introduce your uncle:", options: ["Das ist mein Onkel", "Das heiße mein Onkel"], a: "Das ist mein Onkel" },
-        { id: "4-4-12", type: "jumble", q: "This is my smart granddaughter", options: ["meine", "ist", "Das", "kluge", "Enkelin"], a: "Das ist meine kluge Enkelin" },
-        { id: "4-4-13", type: "intro", word: "Wie heißen Sie?", translation: "What is your name? (Formal)", content: "For elders/strangers." },
-        { id: "4-4-14", type: "choice", q: "Formal name question:", options: ["Wie heißen Sie?", "Wie heißt du?"], a: "Wie heißen Sie?" },
-        { id: "4-4-15", type: "jumble", q: "Good day what is your name (formal)", options: ["Sie", "heißen", "Guten", "Wie", "Tag"], a: "Guten Tag Wie heißen Sie" },
+        { id: "4-4-11", type: "choice", q: "Introduce your uncle:", options: ["Das heiße mein Onkel", "Das ist mein Onkel"], a: "Das ist mein Onkel" },
+        { id: "4-4-12", type: "jumble", q: "This is my smart granddaughter", options: ["Enkelin", "ist", "kluge", "Das", "meine"], a: "Das ist meine kluge Enkelin" },
+        { id: "4-4-13", type: "intro", word: "Wie heißen Sie?", translation: "What is your name? (Formal)", content: "For elders or strangers." },
+        { id: "4-4-14", type: "choice", q: "Formal name question:", options: ["Wie heißt du?", "Wie heißen Sie?"], a: "Wie heißen Sie?" },
+        { id: "4-4-15", type: "jumble", q: "Good day what is your name", options: ["Sie", "Tag", "heißen", "Guten", "Wie"], a: "Guten Tag Wie heißen Sie" },
         { id: "4-4-16", type: "choice", q: "Is 'Ich heiße' formal or informal?", options: ["Both", "Informal only"], a: "Both" },
-        { id: "4-4-17", type: "jumble", q: "This is my blue car", options: ["ist", "mein", "Das", "blaues", "Auto"], a: "Das ist mein blaues Auto" },
-        { id: "4-4-18", type: "choice", q: "Which word means 'pleased'?", options: ["Freut", "Heißt"], a: "Freut" },
-        { id: "4-4-19", type: "jumble", q: "My grandson is tall and he is called Leo", options: ["er", "heiße", "und", "ist", "Mein", "groß", "Leo", "Enkel"], a: "Mein Enkel ist groß und er heißt Leo" },
-        { id: "4-4-20", type: "boss", q: "Final: 'Hello, my name is Paul. This is my niece.'", options: ["Hallo, wie heißt du? Das ist mein Neffe.", "Hallo, ich heiße Paul. Das ist meine Nichte."], a: "Hallo, ich heiße Paul. Das ist meine Nichte." }
+        { id: "4-4-17", type: "jumble", q: "This is my blue car", options: ["Auto", "mein", "blaues", "Das", "ist"], a: "Das ist mein blaues Auto" },
+        { id: "4-4-18", type: "choice", q: "Which word means 'pleased'?", options: ["Heißt", "Freut"], a: "Freut" },
+        { id: "4-4-19", type: "jumble", q: "My grandson is tall and he is called Leo", options: ["Leo", "Mein", "heißt", "und", "er", "groß", "ist", "Enkel"], a: "Mein Enkel ist groß und er heißt Leo" },
+        { id: "4-4-20", type: "boss", q: "Final: 'Hello, my name is Paul. This is my niece.'", options: ["Hallo, ich heiße Paul. Das ist meine Nichte.", "Hallo, wie heißt du? Das ist mein Neffe."], a: "Hallo, ich heiße Paul. Das ist meine Nichte." }
       ]
     },
 
@@ -765,26 +765,169 @@ export const SECTION_1_DATA = [
       levelId: "5",
       title: "The Perfect Greeting",
       questions: [
-        { id: "4-5-1", type: "intro", word: "Willkommen", translation: "Welcome", content: "To greet someone at a place." },
-        { id: "4-5-2", type: "choice", q: "Welcome someone to your home:", options: ["Willkommen", "Tschüss"], a: "Willkommen" },
-        { id: "4-5-3", type: "jumble", q: "Welcome to my house", options: ["mein", "in", "Willkommen", "Haus"], a: "Willkommen in mein Haus" },
-        { id: "4-5-4", type: "intro", word: "Entschuldigung", translation: "Excuse me / Sorry", content: "To start a talk politely." },
-        { id: "4-5-5", type: "choice", q: "How to say 'Excuse me'?", options: ["Entschuldigung", "Willkommen"], a: "Entschuldigung" },
-        { id: "4-5-6", type: "jumble", q: "Excuse me how are you formal", options: ["wie", "Entschuldigung", "Ihnen", "es", "geht"], a: "Entschuldigung wie geht es Ihnen" },
-        { id: "4-5-7", type: "intro", word: "Bitte / Danke", translation: "Please / Thanks", content: "Politeness basics." },
-        { id: "4-5-8", type: "choice", q: "Which word means 'Thank you'?", options: ["Bitte", "Danke"], a: "Danke" },
-        { id: "4-5-9", type: "jumble", q: "Thank you my smart daughter", options: ["kluge", "Danke", "meine", "Tochter"], a: "Danke meine kluge Tochter" },
-        { id: "4-5-10", type: "intro", word: "Vielen Dank", translation: "Many thanks", content: "Stronger gratitude." },
-        { id: "4-5-11", type: "jumble", q: "Many thanks my family is happy", options: ["glücklich", "Dank", "Vielen", "ist", "Familie", "meine"], a: "Vielen Dank meine Familie ist glücklich" },
-        { id: "4-5-12", type: "intro", word: "Schönen Tag noch", translation: "Have a nice day", content: "A common polite farewell." },
-        { id: "4-5-13", type: "choice", q: "Wish someone a nice day:", options: ["Schönen Tag noch", "Guten Morgen"], a: "Schönen Tag noch" },
-        { id: "4-5-14", type: "jumble", q: "Goodbye and have a nice day", options: ["und", "Auf", "Wiedersehen", "Tag", "noch", "Schönen"], a: "Auf Wiedersehen und Schönen Tag noch" },
-        { id: "4-5-15", type: "choice", q: "Is 'Bitte' both 'Please' and 'You're welcome'?", options: ["No", "Yes"], a: "Yes" },
-        { id: "4-5-16", type: "jumble", q: "Excuse me is that your blue car", options: ["Entschuldigung", "blaues", "das", "ist", "dein", "Auto"], a: "Entschuldigung ist das dein blaues Auto" },
-        { id: "4-5-17", type: "choice", q: "Translate 'Many thanks':", options: ["Viel Dank", "Vielen Dank"], a: "Vielen Dank" },
-        { id: "4-5-18", type: "jumble", q: "Welcome the dinner is fast and hot", options: ["heiß", "ist", "das", "Willkommen", "schnell", "und", "Essen"], a: "Willkommen das Essen ist schnell and heiß" },
-        { id: "4-5-19", type: "choice", q: "Greeting at 11 PM?", options: ["Guten Morgen", "Gute Nacht"], a: "Gute Nacht" },
-        { id: "4-5-20", type: "boss", q: "Final: 'Excuse me, are you smart? Thank you!'", options: ["Entschuldigung, sind Sie klug? Danke!", "Willkommen, sind Sie müde? Bitte!"], a: "Entschuldigung, sind Sie klug? Danke!" }
+        { id: "4-5-1", type: "intro", word: "Willkommen", translation: "Welcome", content: "Greet someone arriving." },
+        
+        { id: "4-5-2", type: "choice", q: "How to say 'Welcome'?", options: ["Tschüss", "Willkommen"], a: "Willkommen" },
+        { id: "4-5-3", type: "jumble", q: "Welcome my family", options: ["Willkommen", "Familie", "meine"], a: "Willkommen meine Familie" },
+        { id: "4-5-4", type: "intro", word: "Entschuldigung", translation: "Excuse me / Sorry", content: "Polite way to start a talk." },
+        { id: "4-5-5", type: "choice", q: "How do you say 'Excuse me'?", options: ["Entschuldigung", "Willkommen"], a: "Entschuldigung" },
+        { id: "4-5-6", type: "jumble", q: "Excuse me how are you", options: ["Ihnen", "Entschuldigung", "geht", "wie", "es"], a: "Entschuldigung wie geht es Ihnen" },
+        { id: "4-5-7", type: "intro", word: "Danke", translation: "Thanks", content: "Show gratitude." },
+        { id: "4-5-8", type: "choice", q: "How to say 'Thanks'?", options: ["Danke", "Bitte"], a: "Danke" },
+        { id: "4-5-9", type: "jumble", q: "Thank you my daughter", options: ["meine", "Danke", "Tochter"], a: "Danke meine Tochter" },
+        { id: "4-5-10", type: "intro", word: "Bitte", translation: "Please / You are welcome", content: "Used for 'Please' or responding to 'Danke'." },
+        { id: "4-5-11", type: "jumble", q: "Please my son is happy", options: ["mein", "glücklich", "Sohn", "ist", "Bitte"], a: "Bitte mein Sohn ist glücklich" },
+        { id: "4-5-12", type: "intro", word: "Vielen Dank", translation: "Many thanks", content: "Very polite thanks." },
+        { id: "4-5-13", type: "choice", q: "Which is 'Many thanks'?", options: ["Vielen Dank", "Schönen Tag"], a: "Vielen Dank" },
+        { id: "4-5-14", type: "jumble", q: "Many thanks my father is happy", options: ["ist", "Vielen", "glücklich", "Dank", "mein", "Vater"], a: "Vielen Dank mein Vater ist glücklich" },
+        { id: "4-5-15", type: "intro", word: "Schönen Tag noch", translation: "Have a nice day", content: "Goodbye during the day." },
+        { id: "4-5-16", type: "choice", q: "Wish someone a nice day:", options: ["Schönen Tag noch", "Guten Morgen"], a: "Schönen Tag noch" },
+        { id: "4-5-17", type: "jumble", q: "Goodbye and have a nice day", options: ["Wiedersehen", "Tag", "noch", "Schönen", "und", "Auf"], a: "Auf Wiedersehen und Schönen Tag noch" },
+        { id: "4-5-18", type: "jumble", q: "Welcome my grandson is fast", options: ["ist", "schnell", "Willkommen", "mein", "Enkel"], a: "Willkommen mein Enkel ist schnell" },
+        { id: "4-5-19", type: "choice", q: "Greeting at 11 PM?", options: ["Gute Nacht", "Guten Morgen"], a: "Gute Nacht" },
+        { id: "4-5-20", type: "boss", q: "Final: 'Excuse me, is your family happy?'", options: ["Entschuldigung, ist deine Familie glücklich?", "Willkommen, ist deine Familie glücklich?"], a: "Entschuldigung, ist deine Familie glücklich?" }
+      ]
+    }
+  ]
+}, {
+  unitId: "5",
+  unitTitle: "Order In Restaurant",
+  levels: [
+    // --- LEVEL 1: COMMON GERMAN DISHES ---
+   {
+      levelId: "1",
+      title: "Common German Dishes",
+      questions: [
+        { id: "5-1-1", type: "intro", word: "der Salat / die Pizza", translation: "the salad / the pizza", content: "Food nouns: 'Salat' is masculine (der), 'Pizza' is feminine (die)." },
+        { id: "5-1-2", type: "choice", q: "How do you say 'the salad'?", options: ["die Pizza", "der Salat"], a: "der Salat" },
+        { id: "5-1-3", type: "jumble", q: "the salad is green", options: ["grün", "Salat", "der", "ist"], a: "der Salat ist grün" },
+        { id: "5-1-4", type: "jumble", q: "the pizza is new", options: ["Pizza", "neu", "die", "ist"], a: "die Pizza ist neu" },
+        { id: "5-1-5", type: "intro", word: "die Suppe / das Wasser", translation: "the soup / the water", content: "Liquid items: 'Suppe' (die) and 'Wasser' (das)." },
+        { id: "5-1-6", type: "choice", q: "Which one is 'the water'?", options: ["das Wasser", "die Suppe"], a: "das Wasser" },
+        { id: "5-1-7", type: "jumble", q: "the soup is hot", options: ["heiß", "die", "ist", "Suppe"], a: "die Suppe ist heiß" },
+        { id: "5-1-8", type: "intro", word: "heiß / kalt", translation: "hot / cold", content: "Temperature adjectives for your food." },
+        { id: "5-1-9", type: "choice", q: "What is the opposite of 'heiß'?", options: ["kalt", "schnell"], a: "kalt" },
+        { id: "5-1-10", type: "jumble", q: "the water is cold", options: ["kalt", "Wasser", "das", "ist"], a: "das Wasser ist kalt" },
+        { id: "5-1-11", type: "intro", word: "der Kaffee / der Tee", translation: "the coffee / the tea", content: "Both drinks are masculine: 'der Kaffee' and 'der Tee'." },
+        { id: "5-1-12", type: "choice", q: "How do you say 'the tea'?", options: ["der Kaffee", "der Tee"], a: "der Tee" },
+        { id: "5-1-13", type: "jumble", q: "my coffee is hot", options: ["mein", "heiß", "Kaffee", "ist"], a: "mein Kaffee ist heiß" },
+        { id: "5-1-14", type: "jumble", q: "is your tea cold", options: ["Ist", "dein", "kalt", "Tee"], a: "Ist dein Tee kalt" },
+        { id: "5-1-15", type: "intro", word: "lecker", translation: "delicious", content: "Use this to describe good food." },
+        { id: "5-1-16", type: "choice", q: "Which means 'delicious'?", options: ["lecker", "traurig"], a: "lecker" },
+        { id: "5-1-17", type: "jumble", q: "the pizza is delicious", options: ["lecker", "die", "ist", "Pizza"], a: "die Pizza ist lecker" },
+        { id: "5-1-18", type: "jumble", q: "my salad also is lecker", options: ["lecker", "auch", "ist", "Salat", "mein"], a: "mein Salat ist auch lecker" },
+        { id: "5-1-19", type: "choice", q: "Is the soup delicious?", options: ["Ist die Suppe lecker?", "Ist der Suppe lecker?"], a: "Ist die Suppe lecker?" } ]
+       },
+
+    // --- LEVEL 2: I WOULD LIKE TO EAT... ---
+    {
+      levelId: "2",
+      title: "I would like to eat...",
+      questions: [
+        { id: "5-2-1", type: "intro", word: "Ich möchte...", translation: "I would like...", content: "The polite way to order." },
+        { id: "5-2-2", type: "choice", q: "How to say 'I would like'?", options: ["Ich möchte", "Ich heiße"], a: "Ich möchte" },
+        { id: "5-2-3", type: "jumble", q: "I would like pizza", options: ["Pizza", "möchte", "Ich"], a: "Ich möchte Pizza" },
+        { id: "5-2-4", type: "intro", word: "essen / trinken", translation: "to eat / to drink", content: "Verbs go at the end of 'Ich möchte' sentences." },
+        { id: "5-2-5", type: "choice", q: "Which word means 'to drink'?", options: ["essen", "trinken"], a: "trinken" },
+        { id: "5-2-6", type: "jumble", q: "I would like to eat", options: ["essen", "möchte", "Ich"], a: "Ich möchte essen" },
+        { id: "5-2-7", type: "jumble", q: "I would like to drink water", options: ["Wasser", "möchte", "trinken", "Ich"], a: "Ich möchte Wasser trinken" },
+        { id: "5-2-8", type: "intro", word: "Brot / Käse", translation: "bread / cheese", content: "'Das Brot' (neut) and 'der Käse' (masc)." },
+        { id: "5-2-9", type: "choice", q: "What is 'bread'?", options: ["Brot", "Kaffee"], a: "Brot" },
+        { id: "5-2-10", type: "jumble", q: "I would like to eat cheese", options: ["möchte", "Ich", "essen", "Käse"], a: "Ich möchte Käse essen" },
+        { id: "5-2-11", type: "intro", word: "ein / eine", translation: "a / an", content: "Use 'ein' for masc/neut and 'eine' for feminine nouns." },
+        { id: "5-2-12", type: "choice", q: "A pizza (feminine)?", options: ["eine Pizza", "ein Pizza"], a: "eine Pizza" },
+        { id: "5-2-13", type: "jumble", q: "I would like a soup", options: ["möchte", "eine", "Suppe", "Ich"], a: "Ich möchte eine Suppe" },
+        { id: "5-2-14", type: "jumble", q: "My daughter would like a pizza", options: ["eine", "möchte", "Tochter", "meine", "Pizza"], a: "meine Tochter möchte eine Pizza" },
+        { id: "5-2-15", type: "intro", word: "was", translation: "what", content: "Ask 'Was möchtest du?'" },
+        { id: "5-2-16", type: "choice", q: "What would you like to eat?", options: ["Was möchtest du essen?", "Wie möchtest du essen?"], a: "Was möchtest du essen?" },
+        { id: "5-2-17", type: "jumble", q: "What would you like to drink", options: ["trinken", "möchtest", "Was", "du"], a: "Was möchtest du trinken" },
+        { id: "5-2-18", type: "choice", q: "Is 'trinken' for coffee?", options: ["Yes", "No"], a: "Yes" },
+        { id: "5-2-19", type: "jumble", q: "My son would like to drink a tea", options: ["Sohn", "möchte", "einen", "trinken", "mein", "Tee"], a: "mein Sohn möchte einen Tee trinken" },
+        { id: "5-2-20", type: "boss", q: "Final: I would like to eat a pizza and drink a water", options: ["Ich möchte eine Pizza essen und ein Wasser trinken", "Ich möchte einen Pizza essen und eine Wasser trinken"], a: "Ich möchte eine Pizza essen und ein Wasser trinken" }
+      ]
+    },
+
+    // --- LEVEL 3: THE ACCUSATIVE CASE (EINEN/EIN) ---
+    {
+      levelId: "3",
+      title: "The Accusative Case",
+      questions: [
+        { id: "5-3-1", type: "intro", word: "einen", translation: "a/an (masculine object)", content: "When ordering, 'der' words change to 'einen' (e.g., einen Salat)." },
+        { id: "5-3-2", type: "choice", q: "Order 'a salad' (masculine):", options: ["ein Salat", "einen Salat"], a: "einen Salat" },
+        { id: "5-3-3", type: "jumble", q: "I would like a salad", options: ["Salat", "möchte", "einen", "Ich"], a: "Ich möchte einen Salat" },
+        { id: "5-3-4", type: "jumble", q: "My father would like a tea", options: ["Vater", "einen", "Tee", "möchte", "mein"], a: "mein Vater möchte einen Tee" },
+        { id: "5-3-5", type: "intro", word: "den", translation: "the (masculine object)", content: "When you want 'the' specific salad, 'der' becomes 'den'." },
+        { id: "5-3-6", type: "choice", q: "Order 'the salad':", options: ["den Salat", "der Salat"], a: "den Salat" },
+        { id: "5-3-7", type: "jumble", q: "I would like the coffee", options: ["Ich", "Kaffee", "den", "möchte"], a: "Ich möchte den Kaffee" },
+        { id: "5-3-8", type: "intro", word: "bestellen", translation: "to order", content: "Another useful verb for the restaurant." },
+        { id: "5-3-9", type: "choice", q: "How to say 'to order'?", options: ["bestellen", "essen"], a: "bestellen" },
+        { id: "5-3-10", type: "jumble", q: "I would like to order", options: ["Ich", "möchte", "bestellen"], a: "Ich möchte bestellen" },
+        { id: "5-3-11", type: "jumble", q: "I would like to order a soup", options: ["eine", "Ich", "bestellen", "Suppe", "möchte"], a: "Ich möchte eine Suppe bestellen" },
+        { id: "5-3-12", type: "intro", word: "das Menü", translation: "the menu", content: "'Das Menü' is neutral." },
+        { id: "5-3-13", type: "choice", q: "What is 'the menu'?", options: ["das Menü", "der Menü"], a: "das Menü" },
+        { id: "5-3-14", type: "jumble", q: "The menu is new", options: ["ist", "Menü", "neu", "das"], a: "das Menü ist neu" },
+        { id: "5-3-15", type: "jumble", q: "I would like the menu", options: ["möchte", "Menü", "das", "Ich"], a: "Ich möchte das Menü" },
+        { id: "5-3-16", type: "choice", q: "Does 'eine' change for feminine objects?", options: ["No", "Yes"], a: "No" },
+        { id: "5-3-17", type: "jumble", q: "My daughter would like the pizza", options: ["Pizza", "Tochter", "die", "möchte", "meine"], a: "meine Tochter möchte die Pizza" },
+        { id: "5-3-18", type: "choice", q: "A coffee (masculine object)?", options: ["einen Kaffee", "ein Kaffee"], a: "einen Kaffee" },
+        { id: "5-3-19", type: "jumble", q: "Would you like a tea", options: ["einen", "du", "Tee", "Möchtest"], a: "Möchtest du einen Tee" },
+        { id: "5-3-20", type: "boss", q: "Final: I am ordering the salad and a soup", options: ["Ich bestelle den Salat und eine Suppe", "Ich bestelle der Salat und eine Suppe"], a: "Ich bestelle den Salat und eine Suppe" }
+      ]
+    },
+
+    // --- LEVEL 4: ALLERGIES & LIKES ---
+    {
+      levelId: "4",
+      title: "Allergies & Likes",
+      questions: [
+        { id: "5-4-1", type: "intro", word: "Ich mag...", translation: "I like...", content: "To express your preferences." },
+        { id: "5-4-2", type: "choice", q: "How to say 'I like'?", options: ["Ich mag", "Ich möchte"], a: "Ich mag" },
+        { id: "5-4-3", type: "jumble", q: "I like pizza", options: ["Pizza", "mag", "Ich"], a: "Ich mag Pizza" },
+        { id: "5-4-4", type: "intro", word: "kein / keine", translation: "no / none", content: "To say you don't like something (negation for nouns)." },
+        { id: "5-4-5", type: "choice", q: "I like no salad (masculine):", options: ["kein Salat", "keinen Salat"], a: "keinen Salat" },
+        { id: "5-4-6", type: "jumble", q: "I like no soup", options: ["keine", "mag", "Suppe", "Ich"], a: "Ich mag keine Suppe" },
+        { id: "5-4-7", type: "intro", word: "ohne", translation: "without", content: "Important for specific orders." },
+        { id: "5-4-8", type: "choice", q: "What is 'without'?", options: ["ohne", "und"], a: "ohne" },
+        { id: "5-4-9", type: "jumble", q: "Pizza without cheese", options: ["Käse", "ohne", "Pizza"], a: "Pizza ohne Käse" },
+        { id: "5-4-10", type: "jumble", q: "I would like a salad without cheese", options: ["Salat", "Käse", "einen", "möchte", "ohne", "Ich"], a: "Ich möchte einen Salat ohne Käse" },
+        { id: "5-4-11", type: "intro", word: "mit", translation: "with", content: "The opposite of 'ohne'." },
+        { id: "5-4-12", type: "choice", q: "How to say 'with'?", options: ["mit", "aber"], a: "mit" },
+        { id: "5-4-13", type: "jumble", q: "Coffee with water", options: ["mit", "Kaffee", "Wasser"], a: "Kaffee mit Wasser" },
+        { id: "5-4-14", type: "jumble", q: "I would like a tea with water", options: ["Wasser", "möchte", "mit", "einen", "Tee", "Ich"], a: "Ich möchte einen Tee mit Wasser" },
+        { id: "5-4-15", type: "intro", word: "lecker / nicht lecker", translation: "tasty / not tasty", content: "Recycling adjectives." },
+        { id: "5-4-16", type: "choice", q: "The soup is not tasty:", options: ["Die Suppe ist nicht lecker", "Die Suppe ist kein lecker"], a: "Die Suppe ist nicht lecker" },
+        { id: "5-4-17", type: "jumble", q: "The bread is really delicious", options: ["Brot", "lecker", "das", "wirklich", "ist"], a: "das Brot ist wirklich lecker" },
+        { id: "5-4-18", type: "choice", q: "Do you like cheese?", options: ["Magst du Käse?", "Heißt du Käse?"], a: "Magst du Käse?" },
+        { id: "5-4-19", type: "jumble", q: "My niece likes the soup with bread", options: ["die", "Nichte", "Suppe", "Brot", "mit", "mag", "meine"], a: "meine Nichte mag die Suppe mit Brot" },
+        { id: "5-4-20", type: "boss", q: "Final: I like the pizza but without salad", options: ["Ich mag die Pizza aber ohne Salat", "Ich mag der Pizza aber ohne Salat"], a: "Ich mag die Pizza aber ohne Salat" }
+      ]
+    },
+
+    // --- LEVEL 5: FINAL BOSS: ORDERING ---
+    {
+      levelId: "5",
+      title: "Final Boss: Ordering",
+      questions: [
+        { id: "5-5-1", type: "intro", word: "die Rechnung", translation: "the bill / check", content: "How to finish your meal." },
+        { id: "5-5-2", type: "choice", q: "How to ask for the bill?", options: ["Die Rechnung, bitte!", "Guten Tag, bitte!"], a: "Die Rechnung, bitte!" },
+        { id: "5-5-3", type: "jumble", q: "The bill please", options: ["bitte", "Rechnung", "Die"], a: "Die Rechnung bitte" },
+        { id: "5-5-4", type: "intro", word: "zahlen", translation: "to pay", content: "Use this to tell the waiter you are ready." },
+        { id: "5-5-5", type: "choice", q: "How to say 'to pay'?", options: ["zahlen", "bestellen"], a: "zahlen" },
+        { id: "5-5-6", type: "jumble", q: "I would like to pay", options: ["möchte", "zahlen", "Ich"], a: "Ich möchte zahlen" },
+        { id: "5-5-7", type: "intro", word: "zusammen / getrennt", translation: "together / separate", content: "How will you pay? 'Zusammen' or 'Getrennt'?" },
+        { id: "5-5-8", type: "choice", q: "Pay 'together'?", options: ["zusammen", "getrennt"], a: "zusammen" },
+        { id: "5-5-9", type: "jumble", q: "We would like to pay together", options: ["möchten", "zusammen", "Wir", "zahlen"], a: "Wir möchten zusammen zahlen" },
+        { id: "5-5-10", type: "intro", word: "Wir möchten...", translation: "We would like...", content: "Plural of 'Ich möchte'." },
+        { id: "5-5-11", type: "jumble", q: "We would like a pizza", options: ["möchten", "Pizza", "eine", "Wir"], a: "Wir möchten eine Pizza" },
+        { id: "5-5-12", type: "intro", word: "bereit", translation: "ready", content: "Are you 'bereit' to order?" },
+        { id: "5-5-13", type: "choice", q: "Are you ready?", options: ["Bist du bereit?", "Bist du lecker?"], a: "Bist du bereit?" },
+        { id: "5-5-14", type: "jumble", q: "Everything is ready", options: ["bereit", "ist", "alles"], a: "alles ist bereit" },
+        { id: "5-5-15", type: "intro", word: "stimmt so", translation: "keep the change", content: "Polite phrase for tipping." },
+        { id: "5-5-16", type: "jumble", q: "Thanks keep the change", options: ["so", "Danke", "stimmt"], a: "Danke stimmt so" },
+        { id: "5-5-17", type: "choice", q: "Is 'die Rechnung' feminine?", options: ["Yes", "No"], a: "Yes" },
+        { id: "5-5-18", type: "jumble", q: "Excuse me I would like the bill", options: ["möchte", "Ich", "Rechnung", "die", "Entschuldigung"], a: "Entschuldigung Ich möchte die Rechnung" },
+        { id: "5-5-19", type: "choice", q: "Say 'Goodbye' to the waiter:", options: ["Auf Wiedersehen", "Willkommen"], a: "Auf Wiedersehen" },
+        { id: "5-5-20", type: "boss", q: "Final: Good evening, we would like to order please", options: ["Guten Abend, wir möchten bitte bestellen", "Guten Morgen, wir möchte bitte bestellen"], a: "Guten Abend, wir möchten bitte bestellen" }
       ]
     }
   ]
