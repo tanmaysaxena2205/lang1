@@ -1,27 +1,27 @@
 import { NextResponse } from "next/server";
-import { auth } from "@clerk/nextjs/server"; // Updated import path
+import { auth } from "@clerk/nextjs/server";
 import { getUserById } from "@/lib/actions/user.actions";
 
 export async function GET() {
   try {
-    // In App Router API routes, auth() must be awaited in newer versions
     const { userId } = await auth();
+    if (!userId) return NextResponse.json({ xp: 0, role: 'free' }, { status: 401 });
+
+    const dbUser = await getUserById(userId);
+
+    if (!dbUser) {
+      return NextResponse.json({ xp: 0, role: 'free' }, { status: 404 });
+    }
+
+    // ADD THIS LOG: This will show up in your TERMINAL (not browser console)
     
-    if (!userId) {
-      return NextResponse.json({ xp: 0 }, { status: 401 });
-    }
-
-    const user = await getUserById(userId);
-
-    if (!user) {
-      return NextResponse.json({ xp: 0 }, { status: 404 });
-    }
 
     return NextResponse.json({ 
-      xp: user.xp || 0 
+      xp: dbUser.xp || 0,
+      role: dbUser.role || 'free' // This is where the 'premium' string is passed to the Navbar
     });
   } catch (error) {
-    console.error("API Route Error:", error);
-    return NextResponse.json({ xp: 0 }, { status: 500 });
+    
+    return NextResponse.json({ xp: 0, role: 'free' }, { status: 500 });
   }
 }

@@ -6,9 +6,11 @@ import { UserButton, SignedIn, SignedOut, useUser } from "@clerk/nextjs";
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isGamesOpen, setIsGamesOpen] = useState(false);
+  const [toast, setToast] = useState({ show: false, message: '' });
 
   const { user } = useUser();
   const [dbXp, setDbXp] = useState(0);
+  const [dbRole, setDbRole] = useState('free'); // New state for Database Role
 
   useEffect(() => {
     const fetchStats = async () => {
@@ -16,7 +18,9 @@ export default function Navbar() {
         try {
           const res = await fetch('/api/user/stats');
           const data = await res.json();
+          // We set both XP and Role from your DB response
           setDbXp(data.xp || 0);
+          setDbRole(data.role || 'free'); 
         } catch (err) {
           console.error("Navbar fetch error:", err);
         }
@@ -25,6 +29,29 @@ export default function Navbar() {
 
     fetchStats();
   }, [user]);
+
+  // Handle Toast Auto-hide
+  useEffect(() => {
+    if (toast.show) {
+      const timer = setTimeout(() => setToast({ show: false, message: '' }), 3000);
+      return () => clearTimeout(timer);
+    }
+  }, [toast.show]);
+
+ const handleWalletClick = () => {
+    // 1. Get role from DB state
+    // 2. Fallback to Clerk Metadata if DB state is 'free' or empty
+    const currentRole = dbRole !== 'free' ? dbRole : (user?.publicMetadata?.role || 'free');
+    
+    // DEBUG: Open your browser console (F12) and click the wallet to see this:
+    console.log("DEBUG -> DB Role:", dbRole, " | Clerk Role:", user?.publicMetadata?.role);
+
+    if (String(currentRole).toLowerCase() === 'premium') {
+      setToast({ show: true, message: "Clear Section 3 to unlock the rewards" });
+    } else {
+      setToast({ show: true, message: "Only Subscribers can Access Rewards" });
+    }
+  };
 
   const walletBalance = (Number(dbXp) * 0.15).toFixed(2);
 
@@ -40,10 +67,22 @@ export default function Navbar() {
 
   return (
     <nav className="sticky top-0 z-50 w-full border-b border-orange-500/20 bg-black/90 backdrop-blur-md">
+      {/* CUSTOM TOAST MESSAGE */}
+      {toast.show && (
+        <div className="fixed top-24 left-1/2 -translate-x-1/2 z-[60] animate-in fade-in slide-in-from-top-4 duration-300">
+          <div className="bg-zinc-900 border border-orange-500/50 text-white px-6 py-3 rounded-2xl shadow-[0_0_30px_rgba(249,115,22,0.2)] flex items-center gap-3 backdrop-blur-xl">
+            <div className="bg-orange-500 rounded-full p-1">
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="black" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+            </div>
+            <span className="text-sm font-bold uppercase tracking-wider whitespace-nowrap">{toast.message}</span>
+          </div>
+        </div>
+      )}
+
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex h-20 items-center justify-between relative">
           
-          {/* 1. LOGO (Left Corner) */}
+          {/* 1. LOGO */}
           <div className="flex-shrink-0 z-10">
             <Link href="/" prefetch={false} className="group flex items-center gap-2">
               <div className="bg-orange-500 p-2 rounded-xl group-hover:rotate-12 transition-transform duration-300 shadow-[0_0_15px_rgba(249,115,22,0.4)]">
@@ -55,7 +94,7 @@ export default function Navbar() {
             </Link>
           </div>
 
-          {/* 2. CENTER NAV (Absolutely Centered) */}
+          {/* 2. CENTER NAV */}
           <div className="hidden md:flex absolute left-1/2 -translate-x-1/2 items-center space-x-10 h-full">
             {navLinks.map((link) => (
               <Link 
@@ -97,7 +136,7 @@ export default function Navbar() {
             </div>
           </div>
 
-          {/* 3. RIGHT AUTH & STATS (Right Corner) */}
+          {/* 3. RIGHT AUTH & STATS */}
           <div className="hidden md:flex items-center z-10">
             <SignedOut>
               <div className="flex items-center space-x-4">
@@ -114,7 +153,11 @@ export default function Navbar() {
 
             <SignedIn>
               <div className="flex items-center">
-                {/* WALLET WITH MARGIN */}
+                {/* CLICKABLE WALLET BUTTON */}
+                <button 
+                  onClick={handleWalletClick}
+                  className="group flex items-center gap-2 bg-zinc-900 hover:bg-zinc-800 border border-white/5 px-4 py-2 rounded-xl transition-all active:scale-95 ml-4"
+                >
                   <svg 
                     xmlns="http://www.w3.org/2000/svg" 
                     width="20" 
@@ -133,7 +176,7 @@ export default function Navbar() {
                   <span className="text-white font-black text-sm tracking-tight">
                     ${walletBalance}
                   </span>
-               
+                </button>
 
                 <Link href="/dashboard" className="text-sm font-bold text-gray-300 hover:text-orange-500 transition-all px-4 ml-2">
                   Dashboard
@@ -178,10 +221,14 @@ export default function Navbar() {
                    <p className="text-[10px] font-black text-gray-500 uppercase">Your XP</p>
                    <p className="text-white font-black text-lg">{dbXp}</p>
                 </div>
-                <Link href="/billing" className="bg-zinc-900 border border-white/10 p-4 rounded-2xl active:bg-zinc-800">
+                {/* WALLET CLICK ON MOBILE */}
+                <button 
+                  onClick={handleWalletClick}
+                  className="bg-zinc-900 border border-white/10 p-4 rounded-2xl active:bg-zinc-800 text-left"
+                >
                   <p className="text-[10px] font-black text-orange-500 uppercase">Wallet</p>
                   <p className="text-white font-black text-lg">${walletBalance}</p>
-                </Link>
+                </button>
               </div>
             </SignedIn>
           </div>
